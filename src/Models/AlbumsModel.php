@@ -7,9 +7,9 @@ class AlbumsModel
     {
         $this->db = $db;
     }
-    public function getSongCount($albumId): array
+    public function getAlbum($albumId): Album
     {
-        $query = $this->db->prepare("SELECT `albums`.`id` AS 'album_id', `songs`.`id` AS 'song_id', COUNT(`songs`.`album_id`)
+        $query = $this->db->prepare("SELECT `albums`.`id` AS 'album_id', `albums`.`album_name`, `albums`.`artwork_url`, `songs`.`id` AS 'song_id', COUNT(`songs`.`album_id`)
                                                 FROM `albums`
                                                     INNER JOIN `songs`
                                                     ON `albums`.`id` = `songs`.`album_id`

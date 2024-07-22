@@ -1,9 +1,16 @@
 <?php
 require_once ('src/Models/ArtistsModel.php');
+require_once ('src/DatabaseConnector.php');
+require_once ('src/Models/AlbumsModel.php');
+require_once ('src/Services/ArtistDisplayService.php');
+
 $db = DatabaseConnector::connect();
 $artistsModel=new ArtistsModel($db);
 $artists=$artistsModel->getArtists();
-
+$albumsModel = new AlbumsModel($db);
+$album = $albumsModel->getAlbum(6);
+echo '<pre>';
+var_dump($artists);
 
 
 ?>
@@ -51,14 +58,11 @@ $artists=$artistsModel->getArtists();
                 <div class="">
                     <h3 class="text-xl font-bold mb-3">Artists</h3>
                     <div class="grid grid-cols-2 gap-3 mb-3">
-                        <a class="rounded bg-cyan-950 p-3 hover:bg-cyan-800 hover:cursor-pointer">
-                            <div class="flex gap-2 h-8">
-                                <img class="rounded" src="https://via.placeholder.com/400x400/386641/6A994E?text=The+Memory+of+Trees" />
-                                <img class="rounded" src="https://via.placeholder.com/400x400/386641/6A994E?text=The+Memory+of+Trees" />
-                            </div>
-                            <h4 class="text-xl font-bold">the ting tings</h4>
-                            <p>3 Albums</p>
-                        </a>
+                       <?php
+                        foreach ($artists as $artist) {
+                            echo ArtistDisplayService::getArtistDisplay($artist);
+                        }
+                        ?>
                         <a class="rounded bg-cyan-950 p-3 hover:bg-cyan-800 hover:cursor-pointer">
                             <div class="flex gap-2 h-8">
                                 <img class="rounded" src="https://via.placeholder.com/400x400/386641/6A994E?text=The+Memory+of+Trees" />
