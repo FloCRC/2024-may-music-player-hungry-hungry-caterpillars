@@ -2,6 +2,15 @@
 
 declare(strict_types=1);
 
+require_once 'src/DatabaseConnector.php';
+require_once 'src/Models/ArtistsModel.php';
+require_once  'src/Models/AlbumsModel.php';
+
+$db = DatabaseConnector::connect();
+$artistsModel = new ArtistsModel($db);
+$artists = $artistsModel->getAllArtists();
+$albumModel = new ArtistsModel($db);
+
 ?>
 
 <!DOCTYPE html>
@@ -52,9 +61,9 @@ declare(strict_types=1);
                 </a>
             </div>
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5 items-start">
-
+                <?php foreach ($artists as $artist){?>
                 <div class="rounded p-3 bg-cyan-950">
-                    <h4 class="mb-3 text-2xl font-bold">Artist name</h4>
+                    <h4 class="mb-3 text-2xl font-bold"><?php echo $artist->getArtistName() ?></h4>
                     <div class="mb-3 flex justify-between items-center">
                         <img src="https://via.placeholder.com/50x50/386641/6A994E?text=The+Memory+of+Trees" />
                         <div class="w-3/4 px-3">
@@ -67,6 +76,7 @@ declare(strict_types=1);
                             </svg>
                         </a>
                     </div>
+
 <!--                    <div class="mb-3 flex justify-between items-center">-->
 <!--                        <img src="https://via.placeholder.com/50x50/386641/6A994E?text=The+Memory+of+Trees" />-->
 <!--                        <div class="w-3/4 px-3">-->
@@ -92,6 +102,7 @@ declare(strict_types=1);
 <!--                        </a>-->
 <!--                    </div>-->
                 </div>
+                <?php }?>
 
 <!--                <div class="rounded p-3 bg-cyan-950">-->
 <!--                    <h4 class="mb-3 text-2xl font-bold">Artist name</h4>-->

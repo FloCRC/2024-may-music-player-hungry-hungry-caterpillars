@@ -7,8 +7,6 @@ require_once ('src/Services/ArtistDisplayService.php');
 $db = DatabaseConnector::connect();
 $artistsModel = new ArtistsModel($db);
 $artists = $artistsModel->getArtistsSummary();
-$albumsModel = new AlbumsModel($db);
-$albumSongCount = $albumsModel->getAlbumSongCount(6);
 
 ?>
 

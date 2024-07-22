@@ -18,10 +18,22 @@ class ArtistsModel
         $query->execute(['artistId' => $artistId]);
         return $query->fetch();
     }
+
+    /**
+     * @return Artist[] array
+     */
     public function getArtistsSummary(): array
     {
         $query = $this->db->prepare('SELECT `artists`.`id`, `artists`.`artist_name`
                                                 FROM `artists` LIMIT 3;');
+        $query->setFetchMode(PDO::FETCH_CLASS, Artist::class);
+        $query->execute();
+        return $query->fetchAll();
+    }
+    public function getAllArtists(): array
+    {
+        $query = $this->db->prepare('SELECT `artists`.`id`, `artists`.`artist_name`
+                                                FROM `artists`');
         $query->setFetchMode(PDO::FETCH_CLASS, Artist::class);
         $query->execute();
         return $query->fetchAll();
