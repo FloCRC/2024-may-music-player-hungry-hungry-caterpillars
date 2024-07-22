@@ -38,6 +38,7 @@ class ArtistsModel
         $query->execute();
         return $query->fetchAll();
     }
+
     public function getArtistAlbumArtworks(int $artistId): array
     {
         $query = $this->db->prepare('SELECT `artists`.`id`, `albums`.`artwork_url`

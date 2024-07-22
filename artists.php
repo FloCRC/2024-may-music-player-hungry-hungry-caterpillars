@@ -9,7 +9,7 @@ require_once  'src/Models/AlbumsModel.php';
 $db = DatabaseConnector::connect();
 $artistsModel = new ArtistsModel($db);
 $artists = $artistsModel->getAllArtists();
-$albumModel = new ArtistsModel($db);
+$albumsModel = new AlbumsModel($db);
 
 ?>
 
@@ -61,14 +61,17 @@ $albumModel = new ArtistsModel($db);
                 </a>
             </div>
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5 items-start">
-                <?php foreach ($artists as $artist){?>
+                <?php foreach ($artists as $artist){
+                    $albums = $albumsModel->getArtistsAlbums($artist->getId());
+                    ?>
                 <div class="rounded p-3 bg-cyan-950">
                     <h4 class="mb-3 text-2xl font-bold"><?php echo $artist->getArtistName() ?></h4>
+                    <?php foreach ($albums as $album){?>
                     <div class="mb-3 flex justify-between items-center">
-                        <img src="https://via.placeholder.com/50x50/386641/6A994E?text=The+Memory+of+Trees" />
+                        <img class="w-[50px]" src="<?php echo $album->getArtworkUrl() ?>" />
                         <div class="w-3/4 px-3">
-                            <h4 class="font-bold text-lg">Album name</h4>
-                            <p class="text-sm">4 songs</p>
+                            <h4 class="font-bold text-lg"><?php echo $album->getAlbumName()?>></h4>
+                            <p class="text-sm">4 songs></p>
                         </div>
                         <a href="artist.html" class="hover:text-slate-500 hover:cursor-pointer">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
@@ -76,6 +79,7 @@ $albumModel = new ArtistsModel($db);
                             </svg>
                         </a>
                     </div>
+                    <?php }?>
 
 <!--                    <div class="mb-3 flex justify-between items-center">-->
 <!--                        <img src="https://via.placeholder.com/50x50/386641/6A994E?text=The+Memory+of+Trees" />-->
