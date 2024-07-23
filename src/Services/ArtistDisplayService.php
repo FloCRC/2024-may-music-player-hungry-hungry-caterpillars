@@ -26,8 +26,7 @@ class ArtistDisplayService
                                     <p>{$artistAlbumCount->getAlbumCount()} Albums</p>
                                 </a>";
         }
-            return
-                $summaryDisplay;
-        }
+            return $summaryDisplay;
+    }
 }
 

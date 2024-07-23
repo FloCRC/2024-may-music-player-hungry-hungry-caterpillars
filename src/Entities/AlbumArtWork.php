@@ -3,7 +3,6 @@
 declare(strict_types=1);
 
 class AlbumArtWork {
-
     private int $id;
     private string $artwork_url;
 
