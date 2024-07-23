@@ -7,7 +7,6 @@ class Example {
     {
         return ($a + $b);
     }
-
 }
 
 
