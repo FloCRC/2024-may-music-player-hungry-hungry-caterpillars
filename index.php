@@ -54,24 +54,7 @@ $artists = $artistsModel->getArtistsSummary();
                     <h3 class="text-xl font-bold mb-3">Artists</h3>
                     <div class="grid grid-cols-2 gap-3 mb-3">
                        <?php
-                        foreach ($artists as $artist) {
-                            $artistId = $artist->getId();
-                            $artistAlbumCount = $artistsModel->getArtistsAlbumCount($artistId);
-                            $aristAlbumArtworks = $artistsModel->getArtistAlbumArtworks($artistId);
-                            $artworkDisplay = '';
-                            foreach ($aristAlbumArtworks as $aristAlbumArtwork){
-                                $artworkDisplay .= "<img src={$aristAlbumArtwork->getArtworkUrl()} />";
-                            }
-                            echo "
-                                 <a href='artist.php?{$artistId}' class='rounded bg-cyan-950 p-3 hover:bg-cyan-800 hover:cursor-pointer'>
-                                    <div class='flex gap-2 h-8'>
-                                        {$artworkDisplay}
-                                    </div>
-                                    <h4 class='text-xl font-bold'>{$artist->getArtistName()}</h4>
-                                    <p>{$artistAlbumCount->getAlbumCount()} Albums</p>
-                                </a>
-                            ";
-                        }
+                        echo ArtistDisplayService::getArtistSummaryDisplay($artists, $artistsModel)
                         ?>
                         <div class="rounded bg-cyan-950 p-3 flex items-center">
                             <h4 class="text-2xl text-slate-500">+ 16 more</h4>

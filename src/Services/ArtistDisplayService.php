@@ -12,12 +12,9 @@ require_once ('src/Models/ArtistsModel.php');
 class ArtistDisplayService
 {
 
-    private $db = DatabaseConnector::connect();
-    private $artistsModel = new ArtistsModel($db);
-
-    public static function getArtistSummaryDisplay(Artist $artists): string
+    public static function getArtistSummaryDisplay(array $artists, ArtistsModel $artistsModel): string
     {
-//        $albums = $artist[] ;
+        $summaryDisplay = '';
         foreach ($artists as $artist) {
             $artistId = $artist->getId();
             $artistAlbumCount = $artistsModel->getArtistsAlbumCount($artistId);
@@ -26,16 +23,16 @@ class ArtistDisplayService
             foreach ($aristAlbumArtworks as $aristAlbumArtwork) {
                 $artworkDisplay .= "<img src={$aristAlbumArtwork->getArtworkUrl()} />";
             }
-        }
-            return
-                " <a href='artist.php?{$artistId}' class='rounded bg-cyan-950 p-3 hover:bg-cyan-800 hover:cursor-pointer'>
+            $summaryDisplay .= "<a href='artist.php?{$artistId}' class='rounded bg-cyan-950 p-3 hover:bg-cyan-800 hover:cursor-pointer'>
                                     <div class='flex gap-2 h-8'>
                                         {$artworkDisplay}
                                     </div>
                                     <h4 class='text-xl font-bold'>{$artist->getArtistName()}</h4>
                                     <p>{$artistAlbumCount->getAlbumCount()} Albums</p>
-                                </a>
-                        ";
+                                </a>";
+        }
+            return
+                $summaryDisplay;
         }
 }
 
