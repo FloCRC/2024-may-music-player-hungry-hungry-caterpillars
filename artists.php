@@ -76,7 +76,7 @@ $albumsModel = new AlbumsModel($db);
                             <h4 class="font-bold text-lg"><?php echo $album->getAlbumName()?></h4>
                             <p class="text-sm"><?php echo $albumSongCount->getSongCount()?> Songs</p>
                         </div>
-                        <a href="artist.php?" class="hover:text-slate-500 hover:cursor-pointer">
+                        <a href="artist.php?<?php echo $artist->getId()?>" class="hover:text-slate-500 hover:cursor-pointer">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="m12.75 15 3-3m0 0-3-3m3 3h-7.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
                             </svg>
