@@ -63,7 +63,7 @@ $artists = $artistsModel->getArtistsSummary();
                                 $artworkDisplay .= "<img src={$aristAlbumArtwork->getArtworkUrl()} />";
                             }
                             echo "
-                                 <a class='rounded bg-cyan-950 p-3 hover:bg-cyan-800 hover:cursor-pointer'>
+                                 <a href='artist.php?{$artistId}' class='rounded bg-cyan-950 p-3 hover:bg-cyan-800 hover:cursor-pointer'>
                                     <div class='flex gap-2 h-8'>
                                         {$artworkDisplay}
                                     </div>

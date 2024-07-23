@@ -25,7 +25,7 @@ class ArtistsModel
     public function getArtistsSummary(): array
     {
         $query = $this->db->prepare('SELECT `artists`.`id`, `artists`.`artist_name`
-                                                FROM `artists` LIMIT 3;');
+                                                FROM `artists` ORDER BY RAND() LIMIT 3;');
         $query->setFetchMode(PDO::FETCH_CLASS, Artist::class);
         $query->execute();
         return $query->fetchAll();
