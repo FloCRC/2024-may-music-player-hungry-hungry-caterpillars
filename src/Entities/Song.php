@@ -26,5 +26,4 @@ class Song
     {
         return $this->album_id;
     }
-
 }

@@ -2,7 +2,7 @@
 declare(strict_types=1);
 class DatabaseConnector
 {
-    public static function connect():PDO
+    public static function connect(): PDO
     {
 
         $db = new PDO('mysql:host=db;dbname=music','root','password');
