@@ -5,13 +5,8 @@ declare(strict_types=1);
 require_once ('src/DatabaseConnector.php');
 require_once ('src/Models/ArtistsModel.php');
 
-
-
-
-
 class ArtistDisplayService
 {
-
     public static function getArtistSummaryDisplay(array $artists, ArtistsModel $artistsModel): string
     {
         $summaryDisplay = '';
