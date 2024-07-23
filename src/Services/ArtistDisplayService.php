@@ -18,7 +18,7 @@ class ArtistDisplayService
             foreach ($aristAlbumArtworks as $aristAlbumArtwork) {
                 $artworkDisplay .= "<img src={$aristAlbumArtwork->getArtworkUrl()} />";
             }
-            $summaryDisplay .= "<a href='artist.php?{$artistId}' class='rounded bg-cyan-950 p-3 hover:bg-cyan-800 hover:cursor-pointer'>
+            $summaryDisplay .= "<a href='artist.php?artist={$artistId}' class='rounded bg-cyan-950 p-3 hover:bg-cyan-800 hover:cursor-pointer'>
                                     <div class='flex gap-2 h-8'>
                                         {$artworkDisplay}
                                     </div>

@@ -1,13 +1,14 @@
 <?php
 declare(strict_types=1);
 
-$artist = (int)$_GET['artist'];
+$artistID = (int)$_GET['artist'];
 
 require_once ('src/DatabaseConnector.php');
 require_once ('src/Models/ArtistsModel.php');
 $db = DatabaseConnector::connect();
 $Artists = new ArtistsModel($db);
-$Albums = $Artists->getArtistAlbumList($artist);
+$Albums = $Artists->getArtistAlbumList($artistID);
+$artistName = $Artists->getArtistById($artistID)
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -48,7 +49,7 @@ $Albums = $Artists->getArtistAlbumList($artist);
         <main class="group grow h-screen">
             <section class="group-[.minimised]:h-[calc(100%-6rem)] h-3/4 p-12 overflow-auto">
                 <div class="flex justify-between">
-                    <h2 class="text-4xl font-bold mb-6">Artist name</h2>
+                    <h2 class="text-4xl font-bold mb-6"><?php echo $artistName->getArtistName()?></h2>
                     <a href="artists.php" class="align-top">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-4 inline">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M9 15 3 9m0 0 6-6M3 9h12a6 6 0 0 1 0 12h-3" />
@@ -59,10 +60,10 @@ $Albums = $Artists->getArtistAlbumList($artist);
                 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5 items-start">
 
                     <?php
-                        $increment = 1;
+                        $increment = $Albums[0]->getAlbumID();
                         foreach ($Albums as $album) {
 
-                        $ArtistSongs = $Artists->getArtistSongsAlbumByID($artist,$increment);
+                        $ArtistSongs = $Artists->getArtistSongsAlbumByID($artistID,$increment);
                         ?>
 
                         <div class="rounded p-3 bg-cyan-950">
@@ -77,7 +78,7 @@ $Albums = $Artists->getArtistAlbumList($artist);
                                 </div>
                                 <div class="flex items-center justify-between w-24">
                                     <span class="text-slate-500"><?php echo number_format((float)$song->getLength(),2,':')  ?></span>
-                                    <a href="?playSong=1&songId=<?php echo $song->getSongID() ?>&artist=<?php echo $artist ?>"  class="hover:text-slate-500 hover:cursor-pointer">
+                                    <a href="?playSong=1&songId=<?php echo $song->getSongID() ?>&artist=<?php echo $artistID ?>" class="hover:text-slate-500 hover:cursor-pointer">
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 inline">
                                             <path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"></path>
                                             <path stroke-linecap="round" stroke-linejoin="round" d="M15.91 11.672a.375.375 0 0 1 0 .656l-5.603 3.113a.375.375 0 0 1-.557-.328V8.887c0-.286.307-.466.557-.327l5.603 3.112Z"></path>

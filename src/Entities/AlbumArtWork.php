@@ -2,7 +2,9 @@
 
 declare(strict_types=1);
 
-class AlbumArtWork {
+namespace Example\Entities;
+class AlbumArtWork
+{
     private int $id;
     private string $artwork_url;
 

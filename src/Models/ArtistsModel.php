@@ -2,6 +2,10 @@
 
 declare(strict_types=1);
 
+use Example\Entities\AlbumArtWork;
+use Example\Entities\AlbumCount;
+use Example\Entities\Artist;
+
 require_once('src/Entities/Artist.php');
 require_once('src/Entities/AlbumArtWork.php');
 require_once('src/Entities/AlbumCount.php');
@@ -65,10 +69,9 @@ class ArtistsModel
     }
 
     /**
-     * @param string $artistID
      * @return Artist[]
      */
-    public function getArtistSongsAlbumByID(int $artistID, int $artistAlbum):Array
+    public function getArtistSongsAlbumByID(int $artistID, int $artistAlbum): Array
     {
         $query = $this->db->prepare("SELECT `artist_name`, `album_name`, `artwork_url`, `song_name`, `length` , `songs`.`id` AS 'songID'
             FROM `albums`
@@ -84,12 +87,11 @@ class ArtistsModel
     }
 
     /**
-     * @param $artistID
      * @return Artist[]
      */
-    public function getArtistAlbumList($artistID):Array
+    public function getArtistAlbumList(int $artistID): Array
     {
-        $query = $this->db->prepare("SELECT `album_name`
+        $query = $this->db->prepare("SELECT `album_name`, `albums`.`id` AS 'albumID'
             FROM `albums`
                 INNER JOIN `artists`
                     ON `artists`.`id` = `albums`.`artist_id`
@@ -97,9 +99,17 @@ class ArtistsModel
                     ON `songs`.`album_id` = `albums`.`id`
                     WHERE `artists`.`id` = :artistID
                     GROUP BY `album_name`
-                    ORDER BY `artist_name`,`album_name`;");
+                    ORDER BY `artist_name`,`albumID`;");
         $query->setFetchMode(PDO::FETCH_CLASS,Artist::class);
         $query->execute(['artistID'=> $artistID]);
         return $query->fetchAll();
+    }
+
+    public function getArtistById(int $artistID): Artist
+    {
+        $query = $this->db->prepare("SELECT `artist_name` FROM `artists` WHERE `id` = :artistID;");
+        $query->setFetchMode(PDO::FETCH_CLASS,Artist::class);
+        $query->execute(['artistID'=> $artistID]);
+        return $query->fetch();
     }
 }

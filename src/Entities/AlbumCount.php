@@ -2,7 +2,9 @@
 
 declare(strict_types=1);
 
-class AlbumCount {
+namespace Example\Entities;
+class AlbumCount
+{
 
     private int $album_count;
 

@@ -1,5 +1,6 @@
 <?php
 
+namespace Example\Entities;
 class Song
 {
     private int $id;

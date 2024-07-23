@@ -1,5 +1,6 @@
 <?php
 
+namespace Example\Entities;
 class Artist
 {
     private int $id;
@@ -8,9 +9,9 @@ class Artist
     private string $artwork_url;
     private string $album_name;
     private string $song_name;
-    private string $length;
-    private string $songID;
-
+    private float $length;
+    private int $songID;
+    private int $albumID;
     public function getArtworkUrl(): string
     {
         return $this->artwork_url;
@@ -49,6 +50,11 @@ class Artist
     public function getSongID(): string
     {
         return $this->songID;
+    }
+
+    public function getAlbumID(): int
+    {
+        return $this->albumID;
     }
 
 
