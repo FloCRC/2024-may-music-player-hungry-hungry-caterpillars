@@ -26,5 +26,4 @@ class Artist
     {
         return $this->artist_name;
     }
-
 }

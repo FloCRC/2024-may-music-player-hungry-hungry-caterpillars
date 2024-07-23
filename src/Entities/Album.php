@@ -15,7 +15,6 @@ class Album
         return $this->song_count;
     }
 
-
     public function getAlbumId(): int
     {
         return $this->album_id;
@@ -45,5 +44,4 @@ class Album
     {
         return $this->artist_id;
     }
-
 }

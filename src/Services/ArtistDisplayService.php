@@ -1,16 +1,41 @@
 <?php
 
-class ArtistDisplayService {
-    public static function getArtistDisplay(Artist $artist) {
+declare(strict_types=1);
+
+require_once ('src/DatabaseConnector.php');
+require_once ('src/Models/ArtistsModel.php');
+
+
+
+
+
+class ArtistDisplayService
+{
+
+    private $db = DatabaseConnector::connect();
+    private $artistsModel = new ArtistsModel($db);
+
+    public static function getArtistSummaryDisplay(Artist $artists): string
+    {
 //        $albums = $artist[] ;
-        return "<a class='rounded bg-cyan-950 p-3 hover:bg-cyan-800 hover:cursor-pointer'>
-                            <div class='flex gap-2 h-8'>
-                                 <img class='rounded' src='https://via.placeholder.com/400x400/386641/6A994E?text=The+Memory+of+Trees' />
-                                <img class='rounded' src='https://via.placeholder.com/400x400/386641/6A994E?text=The+Memory+of+Trees' />
-                            </div>
-                            <h4 class='text-xl font-bold'>{$artist->getArtistName()}</h4>
-                            <p>3 Albums</p>
-                        </a>";
-    }
+        foreach ($artists as $artist) {
+            $artistId = $artist->getId();
+            $artistAlbumCount = $artistsModel->getArtistsAlbumCount($artistId);
+            $aristAlbumArtworks = $artistsModel->getArtistAlbumArtworks($artistId);
+            $artworkDisplay = '';
+            foreach ($aristAlbumArtworks as $aristAlbumArtwork) {
+                $artworkDisplay .= "<img src={$aristAlbumArtwork->getArtworkUrl()} />";
+            }
+        }
+            return
+                " <a href='artist.php?{$artistId}' class='rounded bg-cyan-950 p-3 hover:bg-cyan-800 hover:cursor-pointer'>
+                                    <div class='flex gap-2 h-8'>
+                                        {$artworkDisplay}
+                                    </div>
+                                    <h4 class='text-xl font-bold'>{$artist->getArtistName()}</h4>
+                                    <p>{$artistAlbumCount->getAlbumCount()} Albums</p>
+                                </a>
+                        ";
+        }
 }
 
