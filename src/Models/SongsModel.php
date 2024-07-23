@@ -18,8 +18,8 @@ WHERE `id`=:songsId;");
     public function getPlayCount(int $songId):Song
     {
         $query=$this->db->prepare("SELECT `play_count`
-FROM `songs`
-WHERE `id`=:songId;");
+            FROM `songs`
+            WHERE `id`=:songId;");
         $query->setFetchMode(PDO::FETCH_CLASS, Song::class);
         $query->execute(['songsId'=>$songId]);
         return $query->fetch();

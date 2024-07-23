@@ -14,7 +14,7 @@ class ArtistsModel
      */
     public function getArtistSongsAlbumByID(int $artistID, int $artistAlbum):Array
     {
-        $query = $this->db->prepare("SELECT `artist_name`, `album_name`, `artwork_url`, `song_name`, `length` , `songs`.`id` AS 'songID'
+        $query = $this->db->prepare("SELECT `artist_name`, `album_name`, `artwork_url`, `song_name`, `length` , `songs`.`id` AS 'songID' , `play_count`
             FROM `albums`
                 INNER JOIN `artists`
                     ON `artists`.`id` = `albums`.`artist_id`

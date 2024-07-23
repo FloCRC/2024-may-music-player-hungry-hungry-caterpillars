@@ -9,6 +9,7 @@ class Artist
     private string $song_name;
     private string $length;
     private string $songID;
+    private int $play_count;
 
     public function getId(): int
     {
@@ -43,6 +44,11 @@ class Artist
     public function getSongID(): string
     {
         return $this->songID;
+    }
+
+    public function getPlayCount(): int
+    {
+        return $this->play_count;
     }
 
 
