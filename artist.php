@@ -4,6 +4,7 @@ $artist = (int)$_GET['artist'];
 
 require_once ('src/DatabaseConnector.php');
 require_once ('src/Models/ArtistsModel.php');
+$_GET["playSong"];
 $db = DatabaseConnector::connect();
 $Artists = new ArtistsModel($db);
 $Albums = $Artists->getArtistAlbumList($artist);
@@ -72,7 +73,7 @@ $Albums = $Artists->getArtistAlbumList($artist);
                                 <div class="w-3/4 pe-3">
 
                                         <h4 class="font-bold text-lg"> <?php echo $song->getSongName() ?></h4>
-    <!--                                <p class="text-sm">Played 4 times</p>-->
+                                    <p class="text-sm">Played 4 times</p>
                                 </div>
                                 <div class="flex items-center justify-between w-24">
                                     <span class="text-slate-500"><?php echo number_format((float)$song->getLength(),2,':')  ?></span>
