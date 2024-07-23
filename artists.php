@@ -70,8 +70,8 @@ $albumsModel = new AlbumsModel($db);
                     <div class="mb-3 flex justify-between items-center">
                         <img class="w-[50px]" src="<?php echo $album->getArtworkUrl() ?>" />
                         <div class="w-3/4 px-3">
-                            <h4 class="font-bold text-lg"><?php echo $album->getAlbumName()?>></h4>
-                            <p class="text-sm">4 songs></p>
+                            <h4 class="font-bold text-lg"><?php echo $album->getAlbumName()?></h4>
+                            <p class="text-sm">4 songs</p>
                         </div>
                         <a href="artist.html" class="hover:text-slate-500 hover:cursor-pointer">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">

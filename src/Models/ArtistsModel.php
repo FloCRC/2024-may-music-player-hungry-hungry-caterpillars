@@ -33,7 +33,7 @@ class ArtistsModel
     public function getAllArtists(): array
     {
         $query = $this->db->prepare('SELECT `artists`.`id`, `artists`.`artist_name`
-                                                FROM `artists`');
+                                                FROM `artists`;');
         $query->setFetchMode(PDO::FETCH_CLASS, Artist::class);
         $query->execute();
         return $query->fetchAll();
