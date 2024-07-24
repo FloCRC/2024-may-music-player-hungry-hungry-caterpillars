@@ -62,10 +62,9 @@ $artistName = $Artists->getArtistById($artistID)
                 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5 items-start">
 
                     <?php
-                        $increment = $Albums[0]->getAlbumID();
                         foreach ($Albums as $album) {
-
-                        $ArtistSongs = $Artists->getArtistSongsAlbumByID($artistID,$increment);
+                        $albumId = $album->getAlbumID();
+                        $ArtistSongs = $Artists->getArtistSongsAlbumByID($artistID,$albumId);
                         ?>
 
                         <div class="rounded p-3 bg-cyan-950">
@@ -96,7 +95,6 @@ $artistName = $Artists->getArtistById($artistID)
                            <?php }?>
                         </div>
                         <?php
-                        $increment++;
 
                     }
                     ?>

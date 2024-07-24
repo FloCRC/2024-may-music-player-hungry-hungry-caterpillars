@@ -45,7 +45,7 @@ class ArtistDisplayServiceTest extends TestCase
         $artistsModelMock->method('getArtistsAlbumCount')->willReturn($albumCountMock);
 
         $result = \ArtistDisplayService::getArtistSummaryDisplay([$artistsMock], $artistsModelMock);
-        $expected = "<a href='artist.php?1' class='rounded bg-cyan-950 p-3 hover:bg-cyan-800 hover:cursor-pointer'>
+        $expected = "<a href='artist.php?artist=1' class='rounded bg-cyan-950 p-3 hover:bg-cyan-800 hover:cursor-pointer'>
                                     <div class='flex gap-2 h-8'>
                                         <img src=testUrl />
                                     </div>
