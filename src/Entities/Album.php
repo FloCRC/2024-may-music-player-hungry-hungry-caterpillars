@@ -1,5 +1,6 @@
 <?php
 
+namespace Example\Entities;
 class Album
 {
     private int $id;
