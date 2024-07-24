@@ -13,11 +13,17 @@ $artists = $artistsModel->getArtistsSummary();
 $songModel = new SongsModel($db);
 $recentSongs = $songModel->getRecentSong();
 
+if (isset($_GET['favouriteId'])){
+    $songsId = $songModel->updateFavourite((int)$_GET['favouriteId']);
+    header('location:index.php');
+}
+
 if (isset($_GET['playSong'])&& isset($_GET['songID'])){
     $songID = (int)$_GET['songID'];
     $songModel->updateTimePlayed($songID);
     $songModel->updatePlayCount($songID);
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -83,10 +89,11 @@ if (isset($_GET['playSong'])&& isset($_GET['songID'])){
                                 $songID = $recentSong->getId();
                                 $songTitle = $recentSong->getSongName();
                                 $songArtist = $recentSong->getArtistName();
-                                $songArtistId  = $recentSong->getArtistId();
+                                $songArtistId  = $recentSong->getArtistID();
                                 $songLength = $recentSong->getLength();
+                                $songFavourite = $recentSong->getFavourite();
 
-                                echo SongDisplayService::displayRecentSong($songID,$songArtistId,$songTitle,$songArtist,$songLength);
+                                echo SongDisplayService::displayRecentSong($songID,$songArtistId,$songTitle,$songArtist,$songLength, $songFavourite);
                             }
 
                         ?>

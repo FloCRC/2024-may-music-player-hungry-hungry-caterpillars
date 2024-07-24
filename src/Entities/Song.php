@@ -1,4 +1,5 @@
 <?php
+
 class Song
 {
     private int $id;
@@ -8,17 +9,17 @@ class Song
     private int $play_count;
     private int $favourite;
     private string $time_played;
+    private int $artistID;
     private string  $artist_name;
-    private int $artist_id;
 
-    public function getArtistId(): int
+    public function getArtistID(): int
     {
-        return $this->artist_id;
+        return $this->artistID;
     }
 
-    public function getArtistName(): string
+    public function getTimePlayed(): string
     {
-        return $this->artist_name;
+        return $this->time_played;
     }
 
     public function getFavourite(): int
@@ -26,9 +27,9 @@ class Song
         return $this->favourite;
     }
 
-    public function getTimePlayed(): int
+    public function getArtistName(): string
     {
-        return $this->time_played;
+        return $this->artist_name;
     }
 
     public function getId(): int
