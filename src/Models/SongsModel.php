@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 require_once('src/Entities/Song.php');
 class SongsModel
 {
@@ -26,5 +27,16 @@ class SongsModel
         $query->setFetchMode(PDO::FETCH_CLASS, Song::class);
         $query->execute(['songsId'=>$songId]);
         return $query->fetch();
+    }
+
+    public function updateFavourite(int $songId): bool
+    {
+        $query=$this->db->prepare("UPDATE `songs`
+	SET `favourite` = CASE `favourite`
+							WHEN 1 THEN 0
+							WHEN 0 THEN 1
+						END
+		WHERE `id` = :songId;");
+        return $query->execute(['songId'=>$songId]);
     }
 }

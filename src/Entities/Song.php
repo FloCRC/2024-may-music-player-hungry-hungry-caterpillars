@@ -8,7 +8,12 @@ class Song
     private float $length;
     private int $album_id;
     private int $play_count;
+    private int $favourite;
 
+    public function getFavourite(): int
+    {
+        return $this->favourite;
+    }
     public function getId(): int
     {
         return $this->id;
