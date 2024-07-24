@@ -9,20 +9,20 @@ class SongsModel
         $this->db = $db;
     }
 
-    public function updatePlayCount(int $songId):bool
+    public function updatePlayCount(int $songId): bool
     {
         $query=$this->db->prepare("UPDATE `songs`
         SET `play_count`=`play_count`+1
-        WHERE `id`=:songsId;");
+        WHERE `id` = :songsId;");
 
         return $query->execute(['songsId'=>$songId]);
     }
 
-    public function getPlayCount(int $songId):Song
+    public function getSongById(int $songId): Song
     {
-        $query=$this->db->prepare("SELECT `play_count`
+        $query=$this->db->prepare("SELECT `id`, `song_name`, `length`, `album_id`, `play_count`, `time_played`, `favourite`
             FROM `songs`
-            WHERE `id`=:songId;");
+            WHERE `id` = :songId;");
         $query->setFetchMode(PDO::FETCH_CLASS, Song::class);
         $query->execute(['songsId'=>$songId]);
         return $query->fetch();
