@@ -94,13 +94,18 @@ if (isset($_GET['favouriteId'])){
                                             <path stroke-linecap="round" stroke-linejoin="round" d="M15.91 11.672a.375.375 0 0 1 0 .656l-5.603 3.113a.375.375 0 0 1-.557-.328V8.887c0-.286.307-.466.557-.327l5.603 3.112Z"></path>
                                         </svg>
                                     </a>
-                                    <a href="?favouriteId=<?php echo $song->getSongID() ?>&artist=<?php echo $artistID ?>" class="hover:text-slate-500 hover:cursor-pointer">
+                                    <a href="?favouriteId=<?php echo $song->getSongID() ?>&artist=<?php echo $artistID ?>" class="hover:text-slate-500 hover:cursor-pointer <?php
+                                    $currentSongId = $song->getSongID();
+                                    $currentSong = $SongsModel->getSongById((int)$currentSongId);
+                                    $isFavourite = $currentSong->getFavourite();
+                                    if ($isFavourite == 1){echo 'text-orange-500';}
+                                    ?>">
                                         <svg xmlns="http://www.w3.org/2000/svg" <?php
                                         $currentSongId = $song->getSongID();
                                         $currentSong = $SongsModel->getSongById((int)$currentSongId);
                                         $isFavourite = $currentSong->getFavourite();
-                                        if ($isFavourite = 0){echo 'fill="none"';}
-                                        echo 'fill="currentColor"';
+                                        if ($isFavourite == 0){echo 'fill="none"';}
+                                        else {echo 'fill="currentColor"';}
                                         ?>viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
                                             <path stroke-linecap="round" stroke-linejoin="round" d="M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.25 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0 1 11.186 0Z" />
                                         </svg>

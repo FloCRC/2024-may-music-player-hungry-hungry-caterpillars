@@ -25,7 +25,7 @@ class SongsModel
             FROM `songs`
             WHERE `id` = :songId;");
         $query->setFetchMode(PDO::FETCH_CLASS, Song::class);
-        $query->execute(['songsId'=>$songId]);
+        $query->execute(['songId'=>$songId]);
         return $query->fetch();
     }
 

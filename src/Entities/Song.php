@@ -1,6 +1,5 @@
 <?php
 
-namespace Example\Entities;
 class Song
 {
     private int $id;
@@ -9,7 +8,12 @@ class Song
     private int $album_id;
     private int $play_count;
     private int $favourite;
+    private string $time_played;
 
+    public function getTimePlayed(): string
+    {
+        return $this->time_played;
+    }
     public function getFavourite(): int
     {
         return $this->favourite;
