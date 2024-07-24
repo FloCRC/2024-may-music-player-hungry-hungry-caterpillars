@@ -1,5 +1,4 @@
 <?php
-
 declare(strict_types=1);
 
 require_once ('src/DatabaseConnector.php');
@@ -10,6 +9,13 @@ $artistsModel = new ArtistsModel($db);
 $songsModel = new SongsModel($db);
 $artists = $artistsModel->getAllArtists();
 
+$SongsModel = new SongsModel($db);
+if (isset($_GET['songId'])){
+    $songsId = $SongsModel->updatePlayCount((int)$_GET['songId']);
+}
+if (isset($_GET['favouriteId'])){
+    $songsId = $SongsModel->updateFavourite((int)$_GET['favouriteId']);
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -56,7 +62,7 @@ $artists = $artistsModel->getAllArtists();
                     <?php
                         foreach ($artists as $artist){
                             $artistID = $artist->getId();
-                            $favouritedSongs = $artistsModel->getFavoritedSongsByArtistId($artistID);
+                            $favouritedSongs = $songsModel->getFavoritedSongsByArtistId($artistID);
                             if ($favouritedSongs){
                         ?>
                     <div class="rounded p-3 bg-cyan-950">
@@ -65,19 +71,27 @@ $artists = $artistsModel->getAllArtists();
                         <div class="mx-3 mb-3 flex justify-between items-center">
                             <div class="w-3/4 pe-3">
                                 <h4 class="font-bold text-lg"><?php echo $favouritedSong->getSongName()?></h4>
-                                <p class="text-sm">Played 4 times</p>
+                                <p class="text-sm">Played <?php echo $favouritedSong->getPlayCount() ?> times</p>
                             </div>
                             <div class="flex items-center justify-between w-24">
-                                <span class="text-slate-500">3:36</span>
-                                <a href="?playSong=1" class="hover:text-slate-500 hover:cursor-pointer">
+                                <span class="text-slate-500"><?php echo number_format((float)$favouritedSong->getLength(),2,':')  ?></span>
+                                <a href="?playSong=1&songId=<?php echo $favouritedSong->getID() ?>&artist=<?php echo $artistID ?>" class="hover:text-slate-500 hover:cursor-pointer">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 inline">
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"></path>
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M15.91 11.672a.375.375 0 0 1 0 .656l-5.603 3.113a.375.375 0 0 1-.557-.328V8.887c0-.286.307-.466.557-.327l5.603 3.112Z"></path>
                                     </svg>
                                 </a>
-                                <a href="favourite.php?id=" class="hover:text-slate-500 hover:cursor-pointer text-orange-500">
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
-                                        <path fill-rule="evenodd" d="M6.32 2.577a49.255 49.255 0 0 1 11.36 0c1.497.174 2.57 1.46 2.57 2.93V21a.75.75 0 0 1-1.085.67L12 18.089l-7.165 3.583A.75.75 0 0 1 3.75 21V5.507c0-1.47 1.073-2.756 2.57-2.93Z" clip-rule="evenodd" />
+                                <a href="?favouriteId=<?php echo $favouritedSong->getID() ?>&artist=<?php echo $artistID ?>" class="hover:text-slate-500 hover:cursor-pointer <?php
+                                $currentSongId = $favouritedSong->getID();
+                                $currentSong = $SongsModel->getSongById((int)$currentSongId);
+                                $isFavourite = $currentSong->getFavourite();
+                                if ($isFavourite == 1){echo 'text-orange-500';}
+                                ?>">
+                                    <svg xmlns="http://www.w3.org/2000/svg" <?php
+                                    if ($isFavourite == 0){echo 'fill="none"';}
+                                    else {echo 'fill="currentColor"';}
+                                    ?>viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.25 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0 1 11.186 0Z" />
                                     </svg>
                                 </a>
                             </div>

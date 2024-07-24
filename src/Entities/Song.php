@@ -9,15 +9,23 @@ class Song
     private int $play_count;
     private int $favourite;
     private string $time_played;
+    private int $artistID;
+
+    public function getArtistID(): int
+    {
+        return $this->artistID;
+    }
 
     public function getTimePlayed(): string
     {
         return $this->time_played;
     }
+
     public function getFavourite(): int
     {
         return $this->favourite;
     }
+
     public function getId(): int
     {
         return $this->id;

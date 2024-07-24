@@ -39,4 +39,21 @@ class SongsModel
 		WHERE `id` = :songId;");
         return $query->execute(['songId'=>$songId]);
     }
+
+    /**
+     * @return Song[]
+     */
+    public function getFavoritedSongsByArtistId(int $artistID): array
+    {
+        $query = $this->db->prepare("SELECT `artists`.`id` AS 'artistID', `songs`.`id`, `songs`.`song_name`, `songs`.`play_count`, `songs`.`length`, `songs`.`favourite`
+                                                FROM `songs`
+                                                    INNER JOIN `albums`
+                                                        ON `albums`.`id` = `songs`.`album_id`
+                                                            INNER JOIN `artists`
+                                                                ON `artists`.`id` = `albums`.`artist_id`
+                                                                    WHERE `artists`.`id` = :artistID AND `songs`.`favourite` = 1;");
+        $query->setFetchMode(PDO::FETCH_CLASS, Song::class);
+        $query->execute(['artistID' => $artistID]);
+        return $query->fetchAll();
+    }
 }
