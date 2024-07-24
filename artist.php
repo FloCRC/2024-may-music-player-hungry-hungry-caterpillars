@@ -102,7 +102,6 @@ if (isset($_GET['songId'])){
                            <?php }?>
                         </div>
                         <?php
-
                     }
                     ?>
             </section>
