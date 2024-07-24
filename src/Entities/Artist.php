@@ -13,6 +13,12 @@ class Artist
     private int $songID;
     private int $albumID;
     private int $play_count;
+    private int $favourite;
+
+    public function getFavourite(): int
+    {
+        return $this->favourite;
+    }
     public function getArtworkUrl(): string
     {
         return $this->artwork_url;
