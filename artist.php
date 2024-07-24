@@ -1,6 +1,8 @@
 <?php
 declare(strict_types=1);
-
+if (!isset($_GET['artist'])){
+    header('Location:index.php');
+}
 $artistID = (int)$_GET['artist'];
 
 require_once ('src/DatabaseConnector.php');
