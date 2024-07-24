@@ -7,6 +7,7 @@ class Song
     private string $song_name;
     private float $length;
     private int $album_id;
+    private int $play_count;
 
     public function getId(): int
     {
@@ -26,5 +27,10 @@ class Song
     public function getAlbumId(): int
     {
         return $this->album_id;
+    }
+
+    public function getPlayCount(): int
+    {
+        return $this->play_count;
     }
 }

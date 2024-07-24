@@ -12,6 +12,7 @@ class Artist
     private float $length;
     private int $songID;
     private int $albumID;
+    private int $play_count;
     public function getArtworkUrl(): string
     {
         return $this->artwork_url;
@@ -52,10 +53,13 @@ class Artist
         return $this->songID;
     }
 
+    public function getPlayCount(): int
+    {
+        return $this->play_count;
+    }
+
     public function getAlbumID(): int
     {
         return $this->albumID;
     }
-
-
 }
