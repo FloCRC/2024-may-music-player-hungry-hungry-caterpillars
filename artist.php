@@ -16,6 +16,7 @@ $artistName = $Artists->getArtistById($artistID);
 $SongsModel = new SongsModel($db);
 if (isset($_GET['songId'])){
     $songsId = $SongsModel->updatePlayCount((int)$_GET['songId']);
+    $SongsModel->updateTimePlayed((int)$_GET['songId']);
 }
 
 ?>

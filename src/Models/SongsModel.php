@@ -28,10 +28,17 @@ class SongsModel
         return $query->fetch();
     }
 
-    public function getTimePlayed(): array
+    /**
+     * @return Song[] array
+     */
+    public function getRecentSong(): array
     {
-        $query=$this->db->prepare("SELECT `id`, `song_name`, `length`, `album_id`, `play_count`, `time_played`
-            FROM `songs`
+        $query=$this->db->prepare("SELECT `songs`.`id` AS id, `song_name`, `artist_name`, `length`, `album_id`, `play_count`, `time_played`,`favourite`,`artists`.`id` AS `artist_id`
+            FROM `albums`
+            INNER JOIN `artists`
+            ON `artist_id` = `artists`.`id`
+            INNER JOIN `songs`
+            ON `albums`.`id` = `album_id`
             WHERE `time_played` > 0
             ORDER BY `time_played` DESC LIMIT 5;");
         $query->setFetchMode(PDO::FETCH_CLASS, Song::class);
@@ -39,13 +46,11 @@ class SongsModel
         return $query->fetchAll();
     }
 
-    public function updateTimePlayed(int $songId, int $timePlayed): bool
+    public function updateTimePlayed(int $songId): bool
     {
         $query=$this->db->prepare("UPDATE `songs`
             SET `time_played` = CURRENT_TIMESTAMP
-            WHERE `id` = 1;");
-        $query->setFetchMode(PDO::FETCH_CLASS, Song::class);
-        return $query->execute(['songsId'=>$songId]);
-
+            WHERE `id` = :songId;");
+        return $query->execute(['songId'=>$songId]);
     }
 }

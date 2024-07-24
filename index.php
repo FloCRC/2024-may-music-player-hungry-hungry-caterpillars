@@ -6,15 +6,18 @@ require_once ('src/Services/ArtistDisplayService.php');
 require_once ('src/Models/SongsModel.php');
 require_once ('src/Services/SongDisplayService.php');
 
-$_GET['songID'];
-
 $db = DatabaseConnector::connect();
 $artistsModel = new ArtistsModel($db);
 $artists = $artistsModel->getArtistsSummary();
 
 $songModel = new SongsModel($db);
-$recentSongs = $songModel->getTimePlayed();
+$recentSongs = $songModel->getRecentSong();
 
+if (isset($_GET['playSong'])&& isset($_GET['songID'])){
+    $songID = (int)$_GET['songID'];
+    $songModel->updateTimePlayed($songID);
+    $songModel->updatePlayCount($songID);
+}
 ?>
 
 <!DOCTYPE html>
@@ -77,7 +80,13 @@ $recentSongs = $songModel->getTimePlayed();
                     <h3 class="text-xl font-bold mb-3">Recently Played Songs</h3>
                         <?php
                             foreach ($recentSongs as $recentSong) {
-                                echo SongDisplayService::displayRecentSong()
+                                $songID = $recentSong->getId();
+                                $songTitle = $recentSong->getSongName();
+                                $songArtist = $recentSong->getArtistName();
+                                $songArtistId  = $recentSong->getArtistId();
+                                $songLength = $recentSong->getLength();
+
+                                echo SongDisplayService::displayRecentSong($songID,$songArtistId,$songTitle,$songArtist,$songLength);
                             }
 
                         ?>
