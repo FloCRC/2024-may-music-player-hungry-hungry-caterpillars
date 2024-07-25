@@ -101,24 +101,22 @@ if (isset($_GET['playSong'])&& isset($_GET['songID'])){
                             }
 
                         ?>
-                    </div>
+                </div>
+                <div class="">
+                    <h3 class="text-xl font-bold mb-3">Most Popular Albums</h3>
+                    <?php
+                    foreach ($popularAlbums as $popularAlbum) {
+                        $artWork = $popularAlbum->getArtworkUrl();
+                        $albumTitle = $popularAlbum->getAlbumName();
+                        $albumArtist = $popularAlbum->getArtistName();
+                        $albumArtistID  = $popularAlbum->getArtistID();
 
-            <div class="">
-                <h3 class="text-xl font-bold mb-3">Most Popular Albums</h3>
-                <?php
-                foreach ($popularAlbums as $popularAlbum) {
-                    $artWork = $popularAlbum->getArtworkUrl();
-                    $albumTitle = $popularAlbum->getAlbumName();
-                    $albumArtist = $popularAlbum->getArtistName();
-                    $albumArtistID  = $popularAlbum->getArtistID();
+                        echo AlbumDisplayService::displayPopularAlbums($artWork, $albumTitle, $albumArtist, $albumArtistID);
+                    }
 
-                    echo AlbumDisplayService::displayPopularAlbums($artWork, $albumTitle, $albumArtist, $albumArtistID);
-                }
-
-                ?>
+                    ?>
+                </div>
             </div>
-            </div>
-</div>
         </section>
         <section class="group-[.minimised]:py-2 group-[.minimised]:h-24 h-1/4 border-t bg-cyan-950 border-slate-500 p-6">
             <div class="group-[.minimised]:hidden flex justify-between mb-5">
