@@ -12,15 +12,13 @@ $artistsModel = new ArtistsModel($db);
 $artists = $artistsModel->getArtistsSummary();
 
 $songModel = new SongsModel($db);
+if (isset($_GET['favouriteId'])){
+    $songsId = $songModel->updateFavourite((int)$_GET['favouriteId']);
+}
 $recentSongs = $songModel->getRecentSong();
 
 $albumModel = new AlbumsModel($db);
 $popularAlbums = $albumModel->getPopularAlbums();
-
-if (isset($_GET['favouriteId'])){
-    $songsId = $songModel->updateFavourite((int)$_GET['favouriteId']);
-    header('location:index.php');
-}
 
 if (isset($_GET['playSong'])&& isset($_GET['songID'])){
     $songID = (int)$_GET['songID'];
