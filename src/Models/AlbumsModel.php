@@ -40,5 +40,26 @@ class AlbumsModel
         $query->execute(['albumId' => $albumId]);
         return $query->fetch();
     }
+
+    public function getPopularAlbums(): array
+    {
+        $query = $this->db->prepare("SELECT 
+                albums.id, 
+                albums.album_name, artists.artist_name, artists.id AS artist_id, albums.artwork_url,
+                SUM(songs.play_count) AS total_play_count
+            FROM 
+                albums
+            INNER JOIN 
+                songs ON albums.id = songs.album_id
+            INNER JOIN artists ON artists.id = albums.artist_id
+            GROUP BY 
+                albums.id, albums.album_name
+            ORDER BY 
+                total_play_count DESC
+            LIMIT 5;");
+        $query->setFetchMode(PDO::FETCH_CLASS, Album::class);
+        $query->execute();
+        return $query->fetchAll();
+    }
 }
 
