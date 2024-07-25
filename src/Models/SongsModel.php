@@ -87,7 +87,7 @@ class SongsModel
      * @return Song[]
      */
     public function searchBySongName(string $search): array {
-        $query=$this->db->prepare("SELECT `song_name`, `artist_name`, `artist_id` AS 'artistID', `songs`.`id` AS 'id', `favourite`, `length`
+        $query=$this->db->prepare("SELECT `song_name`,`artist_name`, `artist_id` AS 'artistID', `songs`.`id` AS 'id', `favourite`, `length`, `play_count`
                                             FROM `albums`
                                             INNER JOIN `artists`
                                             ON `albums`.`artist_id` = `artists`.`id`
@@ -95,6 +95,20 @@ class SongsModel
                                             ON `songs`.`album_id`= `albums`.`id`
                                             WHERE `song_name` LIKE :search
                                             ORDER BY `artist_name`;");
+        $query->setFetchMode(PDO::FETCH_CLASS, Song::class);
+        $query->execute(['search'=>"%$search%"]);
+        return $query->fetchAll();
+    }
+    public function searchBySongNameGetArtists(string $search): array {
+        $query=$this->db->prepare("SELECT `artist_name`
+                                        FROM `albums`
+                                        INNER JOIN `artists`
+                                        ON `albums`.`artist_id` = `artists`.`id`
+                                        INNER JOIN `songs`
+                                        ON `songs`.`album_id`= `albums`.`id`
+                                        WHERE `song_name` LIKE :search
+                                        GROUP BY `artist_name`
+                                        ORDER BY `artist_name`;");
         $query->setFetchMode(PDO::FETCH_CLASS, Song::class);
         $query->execute(['search'=>"%$search%"]);
         return $query->fetchAll();

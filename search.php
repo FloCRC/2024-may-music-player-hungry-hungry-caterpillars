@@ -7,7 +7,7 @@ require_once ('src/DatabaseConnector.php');
 
 $db = DatabaseConnector::connect();
 $songModel = new SongsModel($db);
-//$songSearchResults = $songModel->searchBySongName('');
+$songSearchResults = $songModel->searchBySongName('');
 if (isset($_GET['search'])){
     $songSearchResults = $songModel->searchBySongName($_GET['search']);
 }
@@ -62,9 +62,51 @@ if (isset($_GET['search'])){
             </form>
 
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5 items-start">
+                <?php
+                $output = "";
+                foreach($songSearchResults as $index => $song) {
 
-                <div class="rounded p-3 bg-cyan-950">
-                    <h4 class="mb-3 text-2xl font-bold">Artist name</h4>
+                    if ($index == 1) {
+                        $output .= "<div class='rounded p-3 bg-cyan-950'>
+                        <h4 class='mb-3 text-2xl font-bold'>{$song->getArtistName()}</h4>";
+                    }else {
+                        $output .= "<div class='rounded p-3 bg-cyan-950'>
+                        <h4 class='mb-3 text-2xl font-bold'>{$song->getArtistName()}</h4>";
+                    }
+                    $textColour = '';
+                    $fillColour = 'none';
+                    if ($song->getFavourite() == 1) {
+                        $textColour = 'text-orange-500';
+                        $fillColour = 'currentColor';
+                    }
+                    $songLengthFormatted = number_format((float)$song->getLength(), 2, ':');
+                    $songId = $song->getId();
+                    $artistId = $song->getArtistID();
+                    $output .= "
+                    <div class='mx-3 mb-3 flex justify-between items-center'>
+                        <div class='w-3/4 pe-3'>
+                            <h4 class='font-bold text-lg'>{$song->getSongName()}</h4>
+                            <p class='text-sm'>{$song->getPlayCount()}</p>
+                        </div>
+                        <div class='flex items-center justify-between w-24'>
+                            <span class='text-slate-500'>$songLengthFormatted</span>
+                            <a href='?playSong=1&songID=$songId&artist=$artistId' class='hover:text-slate-500 hover:cursor-pointer'>
+                                <svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='currentColor' class='size-6 inline'>
+                                    <path stroke-linecap='round' stroke-linejoin='round' d='M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z'></path>
+                                    <path stroke-linecap='round' stroke-linejoin='round' d='M15.91 11.672a.375.375 0 0 1 0 .656l-5.603 3.113a.375.375 0 0 1-.557-.328V8.887c0-.286.307-.466.557-.327l5.603 3.112Z'></path>
+                                </svg>
+                            </a>
+                            <a href='?favouriteId=$songId&artist=$artistId' class='hover:text-slate-500 hover:cursor-pointer $textColour'>
+                                    <svg xmlns='http://www.w3.org/2000/svg' fill=$fillColour viewBox='0 0 24 24' stroke-width='1.5' stroke='currentColor' class='size-6'>
+                                        <path stroke-linecap='round' stroke-linejoin='round' d='M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.25 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0 1 11.186 0Z' />
+                                    </svg>
+                                </a>
+                        </div>
+                    </div>
+                </div>";
+                }
+                echo $output;
+                ?>
                     <div class="mx-3 mb-3 flex justify-between items-center">
                         <div class="w-3/4 pe-3">
                             <h4 class="font-bold text-lg">Song name</h4>
@@ -85,8 +127,8 @@ if (isset($_GET['search'])){
                             </a>
                         </div>
                     </div>
-                </div>
 
+                </div>
             </div>
         </section>
 
