@@ -75,13 +75,18 @@ if (isset($_GET['playSong'])&& isset($_GET['songID'])){
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5 items-start">
                 <?php
                 $output = "";
+                if (!$songSearchResults){
+                    echo "<h2>No Results Found!</h2>";
+                }
                 foreach($songSearchResults as $index => $song) {
-                    if ($index == 0) {
+                    $firstSong = $index == 0;
+                    $artistName = $song->getArtistName();
+                    if ($firstSong) {
                         $output .= "<div class='rounded p-3 bg-cyan-950'>
-                        <h4 class='mb-3 text-2xl font-bold'>{$song->getArtistName()}</h4>";
-                    } elseif ($song->getArtistName() != $songSearchResults[$index - 1]->getArtistName()) {
+                        <h4 class='mb-3 text-2xl font-bold'>{$artistName}</h4>";
+                    } elseif ($artistName != $songSearchResults[$index - 1]->getArtistName()) {
                         $output .= "<div class='rounded p-3 bg-cyan-950'>
-                        <h4 class='mb-3 text-2xl font-bold'>{$song->getArtistName()}</h4>";
+                        <h4 class='mb-3 text-2xl font-bold'>{$artistName}</h4>";
                     }
                     $textColour = '';
                     $fillColour = 'none';
@@ -113,9 +118,10 @@ if (isset($_GET['playSong'])&& isset($_GET['songID'])){
                                 </a>
                         </div>
                     </div>";
-                    if ($index == count($songSearchResults)-1) {
+                    $lastSong = $index == count($songSearchResults) - 1;
+                    if ($lastSong) {
                         $output .= "</div>";
-                    } elseif ($song->getArtistName() != $songSearchResults[$index + 1]->getArtistName()) {
+                    } elseif ($artistName != $songSearchResults[$index + 1]->getArtistName()) {
                         $output .= "</div>";
                     }
                 }

@@ -99,18 +99,4 @@ class SongsModel
         $query->execute(['search'=>"%$search%"]);
         return $query->fetchAll();
     }
-    public function searchBySongNameGetArtists(string $search): array {
-        $query=$this->db->prepare("SELECT `artist_name`
-                                        FROM `albums`
-                                        INNER JOIN `artists`
-                                        ON `albums`.`artist_id` = `artists`.`id`
-                                        INNER JOIN `songs`
-                                        ON `songs`.`album_id`= `albums`.`id`
-                                        WHERE `song_name` LIKE :search
-                                        GROUP BY `artist_name`
-                                        ORDER BY `artist_name`;");
-        $query->setFetchMode(PDO::FETCH_CLASS, Song::class);
-        $query->execute(['search'=>"%$search%"]);
-        return $query->fetchAll();
-    }
 }
