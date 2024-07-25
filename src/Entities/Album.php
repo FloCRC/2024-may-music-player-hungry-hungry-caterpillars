@@ -47,10 +47,12 @@ class Album
     {
         return $this->artist_id;
     }
+
     public function getArtistName(): string
     {
         return $this->artist_name;
     }
+
     public function getTotalPlayCount(): int
     {
         return $this->total_play_count;
