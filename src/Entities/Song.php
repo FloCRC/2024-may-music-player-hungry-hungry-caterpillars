@@ -10,6 +10,7 @@ class Song
     private int $favourite;
     private string $time_played;
     private int $artistID;
+    private string  $artist_name;
 
     public function getArtistID(): int
     {
@@ -24,6 +25,11 @@ class Song
     public function getFavourite(): int
     {
         return $this->favourite;
+    }
+
+    public function getArtistName(): string
+    {
+        return $this->artist_name;
     }
 
     public function getId(): int

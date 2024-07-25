@@ -2,10 +2,6 @@
 
 declare(strict_types=1);
 
-use Example\Entities\AlbumArtWork;
-use Example\Entities\AlbumCount;
-use Example\Entities\Artist;
-
 require_once('src/Entities/Artist.php');
 require_once('src/Entities/AlbumArtWork.php');
 require_once('src/Entities/AlbumCount.php');

@@ -1,6 +1,4 @@
 <?php
-
-namespace Example\Entities;
 class Artist
 {
     private int $id;

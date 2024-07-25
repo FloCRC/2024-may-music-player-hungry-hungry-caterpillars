@@ -3,10 +3,26 @@ require_once ('src/Models/ArtistsModel.php');
 require_once ('src/DatabaseConnector.php');
 require_once ('src/Models/AlbumsModel.php');
 require_once ('src/Services/ArtistDisplayService.php');
+require_once ('src/Models/SongsModel.php');
+require_once ('src/Services/SongDisplayService.php');
 
 $db = DatabaseConnector::connect();
 $artistsModel = new ArtistsModel($db);
 $artists = $artistsModel->getArtistsSummary();
+
+$songModel = new SongsModel($db);
+$recentSongs = $songModel->getRecentSong();
+
+if (isset($_GET['favouriteId'])){
+    $songsId = $songModel->updateFavourite((int)$_GET['favouriteId']);
+    header('location:index.php');
+}
+
+if (isset($_GET['playSong'])&& isset($_GET['songID'])){
+    $songID = (int)$_GET['songID'];
+    $songModel->updateTimePlayed($songID);
+    $songModel->updatePlayCount($songID);
+}
 
 ?>
 
@@ -65,6 +81,23 @@ $artists = $artistsModel->getArtistsSummary();
                             <path stroke-linecap="round" stroke-linejoin="round" d="m12.75 15 3-3m0 0-3-3m3 3h-7.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
                         </svg>
                     </a>
+                </div>
+                <div class="">
+                    <h3 class="text-xl font-bold mb-3">Recently Played Songs</h3>
+                        <?php
+                            foreach ($recentSongs as $recentSong) {
+                                $songID = $recentSong->getId();
+                                $songTitle = $recentSong->getSongName();
+                                $songArtist = $recentSong->getArtistName();
+                                $songArtistId  = $recentSong->getArtistID();
+                                $songLength = $recentSong->getLength();
+                                $songFavourite = $recentSong->getFavourite();
+
+                                echo SongDisplayService::displayRecentSong($songID,$songArtistId,$songTitle,$songArtist,$songLength, $songFavourite);
+                            }
+
+                        ?>
+                    </div>
                 </div>
         </section>
     </main>

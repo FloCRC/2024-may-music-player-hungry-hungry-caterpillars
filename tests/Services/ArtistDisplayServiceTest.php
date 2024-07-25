@@ -2,7 +2,6 @@
 
 declare(strict_types=1);
 
-namespace Services;
 require_once 'src/Services/ArtistDisplayService.php';
 require_once 'src/Entities/AlbumArtWork.php';
 require_once 'src/Entities/AlbumCount.php';
@@ -32,13 +31,13 @@ class ArtistDisplayServiceTest extends TestCase
 
     public function testSuccess(): void
     {
-        $artistsMock = $this->createMock(\Example\Entities\Artist::class);
+        $artistsMock = $this->createMock(Artist::class);
         $artistsMock->method('getId')->willReturn(1);
         $artistsMock->method('getArtistName')->willReturn('test name');
 
-        $albumArtworkMock = $this->createMock(\Example\Entities\AlbumArtWork::class);
+        $albumArtworkMock = $this->createMock(AlbumArtWork::class);
         $albumArtworkMock->method('getArtworkUrl')->willReturn('testUrl');
-        $albumCountMock = $this->createMock(\Example\Entities\AlbumCount::class);
+        $albumCountMock = $this->createMock(AlbumCount::class);
         $albumCountMock->method('getAlbumCount')->willReturn(3);
         $artistsModelMock = $this->createMock(\ArtistsModel::class);
         $artistsModelMock->method('getArtistAlbumArtworks')->willReturn([$albumArtworkMock]);
