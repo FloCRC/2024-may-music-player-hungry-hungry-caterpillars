@@ -7,9 +7,20 @@ require_once ('src/DatabaseConnector.php');
 
 $db = DatabaseConnector::connect();
 $songModel = new SongsModel($db);
+if (isset($_GET['favouriteId'])){
+    $songsId = $songModel->updateFavourite((int)$_GET['favouriteId']);
+}
+
 $songSearchResults = $songModel->searchBySongName('');
+
 if (isset($_GET['search'])){
     $songSearchResults = $songModel->searchBySongName($_GET['search']);
+}
+
+if (isset($_GET['playSong'])&& isset($_GET['songID'])){
+    $songID = (int)$_GET['songID'];
+    $songModel->updateTimePlayed($songID);
+    $songModel->updatePlayCount($songID);
 }
 
 ?>
@@ -65,11 +76,10 @@ if (isset($_GET['search'])){
                 <?php
                 $output = "";
                 foreach($songSearchResults as $index => $song) {
-
-                    if ($index == 1) {
+                    if ($index == 0) {
                         $output .= "<div class='rounded p-3 bg-cyan-950'>
                         <h4 class='mb-3 text-2xl font-bold'>{$song->getArtistName()}</h4>";
-                    }else {
+                    } elseif ($song->getArtistName() != $songSearchResults[$index - 1]->getArtistName()) {
                         $output .= "<div class='rounded p-3 bg-cyan-950'>
                         <h4 class='mb-3 text-2xl font-bold'>{$song->getArtistName()}</h4>";
                     }
@@ -86,7 +96,7 @@ if (isset($_GET['search'])){
                     <div class='mx-3 mb-3 flex justify-between items-center'>
                         <div class='w-3/4 pe-3'>
                             <h4 class='font-bold text-lg'>{$song->getSongName()}</h4>
-                            <p class='text-sm'>{$song->getPlayCount()}</p>
+                            <p class='text-sm'>played {$song->getPlayCount()} times</p>
                         </div>
                         <div class='flex items-center justify-between w-24'>
                             <span class='text-slate-500'>$songLengthFormatted</span>
@@ -102,34 +112,17 @@ if (isset($_GET['search'])){
                                     </svg>
                                 </a>
                         </div>
-                    </div>
-                </div>";
+                    </div>";
+                    if ($index == count($songSearchResults)-1) {
+                        $output .= "</div>";
+                    } elseif ($song->getArtistName() != $songSearchResults[$index + 1]->getArtistName()) {
+                        $output .= "</div>";
+                    }
                 }
+
                 echo $output;
                 ?>
-                    <div class="mx-3 mb-3 flex justify-between items-center">
-                        <div class="w-3/4 pe-3">
-                            <h4 class="font-bold text-lg">Song name</h4>
-                            <p class="text-sm">Played 4 times</p>
-                        </div>
-                        <div class="flex items-center justify-between w-24">
-                            <span class="text-slate-500">3:36</span>
-                            <a href="?playSong=1" class="hover:text-slate-500 hover:cursor-pointer">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 inline">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"></path>
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.91 11.672a.375.375 0 0 1 0 .656l-5.603 3.113a.375.375 0 0 1-.557-.328V8.887c0-.286.307-.466.557-.327l5.603 3.112Z"></path>
-                                </svg>
-                            </a>
-                            <a href="favourite.php?id=" class="hover:text-slate-500 hover:cursor-pointer">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.25 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0 1 11.186 0Z" />
-                                </svg>
-                            </a>
-                        </div>
-                    </div>
 
-                </div>
-            </div>
         </section>
 
         <section class="group-[.minimised]:py-2 group-[.minimised]:h-24 h-1/4 border-t bg-cyan-950 border-slate-500 p-6">

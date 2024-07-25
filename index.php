@@ -8,15 +8,14 @@ require_once ('src/Services/SongDisplayService.php');
 
 $db = DatabaseConnector::connect();
 $artistsModel = new ArtistsModel($db);
+
 $artists = $artistsModel->getArtistsSummary();
 
 $songModel = new SongsModel($db);
-$recentSongs = $songModel->getRecentSong();
-
 if (isset($_GET['favouriteId'])){
     $songsId = $songModel->updateFavourite((int)$_GET['favouriteId']);
-    header('location:index.php');
 }
+$recentSongs = $songModel->getRecentSong();
 
 if (isset($_GET['playSong'])&& isset($_GET['songID'])){
     $songID = (int)$_GET['songID'];
