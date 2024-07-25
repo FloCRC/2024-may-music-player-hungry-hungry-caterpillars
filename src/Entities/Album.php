@@ -10,6 +10,8 @@ class Album
     private int $album_id;
     private int $song_id;
     private int $song_count;
+    private string $artist_name;
+    private int $total_play_count;
 
     public function getSongCount(): int
     {
@@ -44,5 +46,15 @@ class Album
     public function getArtistId(): int
     {
         return $this->artist_id;
+    }
+
+    public function getArtistName(): string
+    {
+        return $this->artist_name;
+    }
+
+    public function getTotalPlayCount(): int
+    {
+        return $this->total_play_count;
     }
 }

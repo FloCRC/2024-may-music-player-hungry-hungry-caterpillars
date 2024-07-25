@@ -1,5 +1,5 @@
 <?php
-
+declare(strict_types=1);
 require_once 'src/Services/SongDisplayService.php';
 use PHPUnit\Framework\TestCase;
 class SongDisplayServiceTest extends TestCase

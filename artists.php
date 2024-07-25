@@ -43,7 +43,6 @@ $albumsModel = new AlbumsModel($db);
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6 group-[.open]:hidden">
                 <path fill-rule="evenodd" d="M2.25 4.5A.75.75 0 0 1 3 3.75h14.25a.75.75 0 0 1 0 1.5H3a.75.75 0 0 1-.75-.75Zm14.47 3.97a.75.75 0 0 1 1.06 0l3.75 3.75a.75.75 0 1 1-1.06 1.06L18 10.81V21a.75.75 0 0 1-1.5 0V10.81l-2.47 2.47a.75.75 0 1 1-1.06-1.06l3.75-3.75ZM2.25 9A.75.75 0 0 1 3 8.25h9.75a.75.75 0 0 1 0 1.5H3A.75.75 0 0 1 2.25 9Zm0 4.5a.75.75 0 0 1 .75-.75h5.25a.75.75 0 0 1 0 1.5H3a.75.75 0 0 1-.75-.75Z" clip-rule="evenodd" />
             </svg>
-
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6 group-[:not(.open)]:hidden">
                 <path fill-rule="evenodd" d="M2.25 4.5A.75.75 0 0 1 3 3.75h14.25a.75.75 0 0 1 0 1.5H3a.75.75 0 0 1-.75-.75Zm0 4.5A.75.75 0 0 1 3 8.25h9.75a.75.75 0 0 1 0 1.5H3A.75.75 0 0 1 2.25 9Zm15-.75A.75.75 0 0 1 18 9v10.19l2.47-2.47a.75.75 0 1 1 1.06 1.06l-3.75 3.75a.75.75 0 0 1-1.06 0l-3.75-3.75a.75.75 0 1 1 1.06-1.06l2.47 2.47V9a.75.75 0 0 1 .75-.75Zm-15 5.25a.75.75 0 0 1 .75-.75h9.75a.75.75 0 0 1 0 1.5H3a.75.75 0 0 1-.75-.75Z" clip-rule="evenodd" />
             </svg>
@@ -83,212 +82,54 @@ $albumsModel = new AlbumsModel($db);
                         </a>
                     </div>
                     <?php }?>
-
-<!--                    <div class="mb-3 flex justify-between items-center">-->
-<!--                        <img src="https://via.placeholder.com/50x50/386641/6A994E?text=The+Memory+of+Trees" />-->
-<!--                        <div class="w-3/4 px-3">-->
-<!--                            <h4 class="font-bold text-lg">Album name</h4>-->
-<!--                            <p class="text-sm">4 songs</p>-->
-<!--                        </div>-->
-<!--                        <a href="artist.php" class="hover:text-slate-500 hover:cursor-pointer">-->
-<!--                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">-->
-<!--                                <path stroke-linecap="round" stroke-linejoin="round" d="m12.75 15 3-3m0 0-3-3m3 3h-7.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />-->
-<!--                            </svg>-->
-<!--                        </a>-->
-<!--                    </div>-->
-<!--                    <div class="mb-3 flex justify-between items-center">-->
-<!--                        <img src="https://via.placeholder.com/50x50/386641/6A994E?text=The+Memory+of+Trees" />-->
-<!--                        <div class="w-3/4 px-3">-->
-<!--                            <h4 class="font-bold text-lg">Album name</h4>-->
-<!--                            <p class="text-sm">4 songs</p>-->
-<!--                        </div>-->
-<!--                        <a href="artist.php" class="hover:text-slate-500 hover:cursor-pointer">-->
-<!--                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">-->
-<!--                                <path stroke-linecap="round" stroke-linejoin="round" d="m12.75 15 3-3m0 0-3-3m3 3h-7.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />-->
-<!--                            </svg>-->
-<!--                        </a>-->
-<!--                    </div>-->
                 </div>
                 <?php }?>
-
-<!--                <div class="rounded p-3 bg-cyan-950">-->
-<!--                    <h4 class="mb-3 text-2xl font-bold">Artist name</h4>-->
-<!--                    <div class="mb-3 flex justify-between items-center">-->
-<!--                        <img src="https://via.placeholder.com/50x50/386641/6A994E?text=The+Memory+of+Trees" />-->
-<!--                        <div class="w-3/4 px-3">-->
-<!--                            <h4 class="font-bold text-lg">Album name</h4>-->
-<!--                            <p class="text-sm">4 songs</p>-->
-<!--                        </div>-->
-<!--                        <a href="artist.php" class="hover:text-slate-500 hover:cursor-pointer">-->
-<!--                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">-->
-<!--                                <path stroke-linecap="round" stroke-linejoin="round" d="m12.75 15 3-3m0 0-3-3m3 3h-7.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />-->
-<!--                            </svg>-->
-<!--                        </a>-->
-<!--                    </div>-->
-<!--                    <div class="mb-3 flex justify-between items-center">-->
-<!--                        <img src="https://via.placeholder.com/50x50/386641/6A994E?text=The+Memory+of+Trees" />-->
-<!--                        <div class="w-3/4 px-3">-->
-<!--                            <h4 class="font-bold text-lg">Album name</h4>-->
-<!--                            <p class="text-sm">4 songs</p>-->
-<!--                        </div>-->
-<!--                        <a href="artist.php" class="hover:text-slate-500 hover:cursor-pointer">-->
-<!--                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">-->
-<!--                                <path stroke-linecap="round" stroke-linejoin="round" d="m12.75 15 3-3m0 0-3-3m3 3h-7.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />-->
-<!--                            </svg>-->
-<!--                        </a>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!---->
-<!--                <div class="rounded p-3 bg-cyan-950">-->
-<!--                    <h4 class="mb-3 text-2xl font-bold">Artist name</h4>-->
-<!--                    <div class="mb-3 flex justify-between items-center">-->
-<!--                        <img src="https://via.placeholder.com/50x50/386641/6A994E?text=The+Memory+of+Trees" />-->
-<!--                        <div class="w-3/4 px-3">-->
-<!--                            <h4 class="font-bold text-lg">Album name</h4>-->
-<!--                            <p class="text-sm">4 songs</p>-->
-<!--                        </div>-->
-<!--                        <a href="artist.php" class="hover:text-slate-500 hover:cursor-pointer">-->
-<!--                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">-->
-<!--                                <path stroke-linecap="round" stroke-linejoin="round" d="m12.75 15 3-3m0 0-3-3m3 3h-7.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />-->
-<!--                            </svg>-->
-<!--                        </a>-->
-<!--                    </div>-->
-<!--                    <div class="mb-3 flex justify-between items-center">-->
-<!--                        <img src="https://via.placeholder.com/50x50/386641/6A994E?text=The+Memory+of+Trees" />-->
-<!--                        <div class="w-3/4 px-3">-->
-<!--                            <h4 class="font-bold text-lg">Album name</h4>-->
-<!--                            <p class="text-sm">4 songs</p>-->
-<!--                        </div>-->
-<!--                        <a href="artist.php" class="hover:text-slate-500 hover:cursor-pointer">-->
-<!--                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">-->
-<!--                                <path stroke-linecap="round" stroke-linejoin="round" d="m12.75 15 3-3m0 0-3-3m3 3h-7.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />-->
-<!--                            </svg>-->
-<!--                        </a>-->
-<!--                    </div>-->
-<!--                    <div class="mb-3 flex justify-between items-center">-->
-<!--                        <img src="https://via.placeholder.com/50x50/386641/6A994E?text=The+Memory+of+Trees" />-->
-<!--                        <div class="w-3/4 px-3">-->
-<!--                            <h4 class="font-bold text-lg">Album name</h4>-->
-<!--                            <p class="text-sm">4 songs</p>-->
-<!--                        </div>-->
-<!--                        <a href="artist.php" class="hover:text-slate-500 hover:cursor-pointer">-->
-<!--                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">-->
-<!--                                <path stroke-linecap="round" stroke-linejoin="round" d="m12.75 15 3-3m0 0-3-3m3 3h-7.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />-->
-<!--                            </svg>-->
-<!--                        </a>-->
-<!--                    </div>-->
-<!--                    <div class="mb-3 flex justify-between items-center">-->
-<!--                        <img src="https://via.placeholder.com/50x50/386641/6A994E?text=The+Memory+of+Trees" />-->
-<!--                        <div class="w-3/4 px-3">-->
-<!--                            <h4 class="font-bold text-lg">Album name</h4>-->
-<!--                            <p class="text-sm">4 songs</p>-->
-<!--                        </div>-->
-<!--                        <a href="artist.php" class="hover:text-slate-500 hover:cursor-pointer">-->
-<!--                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">-->
-<!--                                <path stroke-linecap="round" stroke-linejoin="round" d="m12.75 15 3-3m0 0-3-3m3 3h-7.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />-->
-<!--                            </svg>-->
-<!--                        </a>-->
-<!--                    </div>-->
-<!--                    <div class="mb-3 flex justify-between items-center">-->
-<!--                        <img src="https://via.placeholder.com/50x50/386641/6A994E?text=The+Memory+of+Trees" />-->
-<!--                        <div class="w-3/4 px-3">-->
-<!--                            <h4 class="font-bold text-lg">Album name</h4>-->
-<!--                            <p class="text-sm">4 songs</p>-->
-<!--                        </div>-->
-<!--                        <a href="artist.php" class="hover:text-slate-500 hover:cursor-pointer">-->
-<!--                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">-->
-<!--                                <path stroke-linecap="round" stroke-linejoin="round" d="m12.75 15 3-3m0 0-3-3m3 3h-7.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />-->
-<!--                            </svg>-->
-<!--                        </a>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!---->
-<!--                <div class="rounded p-3 bg-cyan-950">-->
-<!--                    <h4 class="mb-3 text-2xl font-bold">Artist name</h4>-->
-<!--                    <div class="mb-3 flex justify-between items-center">-->
-<!--                        <img src="https://via.placeholder.com/50x50/386641/6A994E?text=The+Memory+of+Trees" />-->
-<!--                        <div class="w-3/4 px-3">-->
-<!--                            <h4 class="font-bold text-lg">Album name</h4>-->
-<!--                            <p class="text-sm">4 songs</p>-->
-<!--                        </div>-->
-<!--                        <a href="artist.php" class="hover:text-slate-500 hover:cursor-pointer">-->
-<!--                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">-->
-<!--                                <path stroke-linecap="round" stroke-linejoin="round" d="m12.75 15 3-3m0 0-3-3m3 3h-7.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />-->
-<!--                            </svg>-->
-<!--                        </a>-->
-<!--                    </div>-->
-<!--                    <div class="mb-3 flex justify-between items-center">-->
-<!--                        <img src="https://via.placeholder.com/50x50/386641/6A994E?text=The+Memory+of+Trees" />-->
-<!--                        <div class="w-3/4 px-3">-->
-<!--                            <h4 class="font-bold text-lg">Album name</h4>-->
-<!--                            <p class="text-sm">4 songs</p>-->
-<!--                        </div>-->
-<!--                        <a href="artist.php" class="hover:text-slate-500 hover:cursor-pointer">-->
-<!--                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">-->
-<!--                                <path stroke-linecap="round" stroke-linejoin="round" d="m12.75 15 3-3m0 0-3-3m3 3h-7.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />-->
-<!--                            </svg>-->
-<!--                        </a>-->
-<!--                    </div>-->
-<!--                    <div class="mb-3 flex justify-between items-center">-->
-<!--                        <img src="https://via.placeholder.com/50x50/386641/6A994E?text=The+Memory+of+Trees" />-->
-<!--                        <div class="w-3/4 px-3">-->
-<!--                            <h4 class="font-bold text-lg">Album name</h4>-->
-<!--                            <p class="text-sm">4 songs</p>-->
-<!--                        </div>-->
-<!--                        <a href="artist.php" class="hover:text-slate-500 hover:cursor-pointer">-->
-<!--                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">-->
-<!--                                <path stroke-linecap="round" stroke-linejoin="round" d="m12.75 15 3-3m0 0-3-3m3 3h-7.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />-->
-<!--                            </svg>-->
-<!--                        </a>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </section>-->
-<!--        <section class="group-[.minimised]:py-2 group-[.minimised]:h-24 h-1/4 border-t bg-cyan-950 border-slate-500 p-6">-->
-<!--            <div class="group-[.minimised]:hidden flex justify-between mb-5">-->
-<!--                <h3 class="text-2xl">Now Playing</h3>-->
-<!--                <div>-->
-<!--                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">-->
-<!--                        <path stroke-linecap="round" stroke-linejoin="round" d="m9 9 10.5-3m0 6.553v3.75a2.25 2.25 0 0 1-1.632 2.163l-1.32.377a1.803 1.803 0 1 1-.99-3.467l2.31-.66a2.25 2.25 0 0 0 1.632-2.163Zm0 0V2.25L9 5.25v10.303m0 0v3.75a2.25 2.25 0 0 1-1.632 2.163l-1.32.377a1.803 1.803 0 0 1-.99-3.467l2.31-.66A2.25 2.25 0 0 0 9 15.553Z" />-->
-<!--                    </svg>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--            <div class="flex justify-between items-start md:items-stretch">-->
-<!--                <img src="https://via.placeholder.com/400x400/386641/6A994E?text=The+Memory+of+Trees" class="group-[.minimised]:hidden hidden sm:block w-20 md:w-32 mr-5" alt="album cover" />-->
-<!--                <div class="flex justify-between flex-wrap grow content-between">-->
-<!--                    <div class="group-[.minimised]:hidden w-full md:w-auto">-->
-<!--                        <h4 class="text-xl">Song title</h4>-->
-<!--                        <h5>Artist</h5>-->
-<!--                    </div>-->
-<!--                    <div class="group-[.minimised]:w-full group-[.minimised]:p-0 group-[.minimised]:m-0 group-[.minimised]:mb-2 flex justify-between w-full md:w-1/2 md:mr-12 pr-8 pt-3 mb-3">-->
-<!--                        <button class="hover:text-slate-500" id="playPrev">-->
-<!--                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-7">-->
-<!--                                <path stroke-linecap="round" stroke-linejoin="round" d="M21 16.811c0 .864-.933 1.406-1.683.977l-7.108-4.061a1.125 1.125 0 0 1 0-1.954l7.108-4.061A1.125 1.125 0 0 1 21 8.689v8.122ZM11.25 16.811c0 .864-.933 1.406-1.683.977l-7.108-4.061a1.125 1.125 0 0 1 0-1.954l7.108-4.061a1.125 1.125 0 0 1 1.683.977v8.122Z" />-->
-<!--                            </svg>-->
-<!--                        </button>-->
-<!--                        <button class="hover:text-slate-500" id="play">-->
-<!--                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-9">-->
-<!--                                <path stroke-linecap="round" stroke-linejoin="round" d="M21 7.5V18M15 7.5V18M3 16.811V8.69c0-.864.933-1.406 1.683-.977l7.108 4.061a1.125 1.125 0 0 1 0 1.954l-7.108 4.061A1.125 1.125 0 0 1 3 16.811Z" />-->
-<!--                            </svg>-->
-<!--                        </button>-->
-<!--                        <button class="hover:text-slate-500" id="playNext">-->
-<!--                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-7">-->
-<!--                                <path stroke-linecap="round" stroke-linejoin="round" d="M3 8.689c0-.864.933-1.406 1.683-.977l7.108 4.061a1.125 1.125 0 0 1 0 1.954l-7.108 4.061A1.125 1.125 0 0 1 3 16.811V8.69ZM12.75 8.689c0-.864.933-1.406 1.683-.977l7.108 4.061a1.125 1.125 0 0 1 0 1.954l-7.108 4.061a1.125 1.125 0 0 1-1.683-.977V8.69Z" />-->
-<!--                            </svg>-->
-<!--                        </button>-->
-<!--                    </div>-->
-<!--                    <div class="w-full flex justify-between">-->
-<!--                        <div class="mr-6" id="playTime">0:00</div>-->
-<!--                        <div class="bg-white rounded-md w-full h-6 overflow-hidden mr-6">-->
-<!--                            <div class="bg-blue-500 w-0 h-full" id="playProgress"></div>-->
-<!--                        </div>-->
-<!--                        <button class="hover:text-slate-500" id="repeat">-->
-<!--                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-7">-->
-<!--                                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 12c0-1.232-.046-2.453-.138-3.662a4.006 4.006 0 0 0-3.7-3.7 48.678 48.678 0 0 0-7.324 0 4.006 4.006 0 0 0-3.7 3.7c-.017.22-.032.441-.046.662M19.5 12l3-3m-3 3-3-3m-12 3c0 1.232.046 2.453.138 3.662a4.006 4.006 0 0 0 3.7 3.7 48.656 48.656 0 0 0 7.324 0 4.006 4.006 0 0 0 3.7-3.7c.017-.22.032-.441.046-.662M4.5 12l3 3m-3-3-3 3" />-->
-<!--                            </svg>-->
-<!--                        </button>-->
-<!--                    </div>-->
-<!--                </div>-->
+        </section>
+        <section class="group-[.minimised]:py-2 group-[.minimised]:h-24 h-1/4 border-t bg-cyan-950 border-slate-500 p-6">
+            <div class="group-[.minimised]:hidden flex justify-between mb-5">
+                <h3 class="text-2xl">Now Playing</h3>
+                <div>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="m9 9 10.5-3m0 6.553v3.75a2.25 2.25 0 0 1-1.632 2.163l-1.32.377a1.803 1.803 0 1 1-.99-3.467l2.31-.66a2.25 2.25 0 0 0 1.632-2.163Zm0 0V2.25L9 5.25v10.303m0 0v3.75a2.25 2.25 0 0 1-1.632 2.163l-1.32.377a1.803 1.803 0 0 1-.99-3.467l2.31-.66A2.25 2.25 0 0 0 9 15.553Z" />
+                    </svg>
+                </div>
+            </div>
+            <div class="flex justify-between items-start md:items-stretch">
+                <img src="https://via.placeholder.com/400x400/386641/6A994E?text=The+Memory+of+Trees" class="group-[.minimised]:hidden hidden sm:block w-20 md:w-32 mr-5" alt="album cover" />
+                <div class="flex justify-between flex-wrap grow content-between">
+                    <div class="group-[.minimised]:hidden w-full md:w-auto">
+                        <h4 class="text-xl">Song title</h4>
+                        <h5>Artist</h5>
+                    </div>
+                    <div class="group-[.minimised]:w-full group-[.minimised]:p-0 group-[.minimised]:m-0 group-[.minimised]:mb-2 flex justify-between w-full md:w-1/2 md:mr-12 pr-8 pt-3 mb-3">
+                        <button class="hover:text-slate-500" id="playPrev">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-7">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M21 16.811c0 .864-.933 1.406-1.683.977l-7.108-4.061a1.125 1.125 0 0 1 0-1.954l7.108-4.061A1.125 1.125 0 0 1 21 8.689v8.122ZM11.25 16.811c0 .864-.933 1.406-1.683.977l-7.108-4.061a1.125 1.125 0 0 1 0-1.954l7.108-4.061a1.125 1.125 0 0 1 1.683.977v8.122Z" />
+                            </svg>
+                        </button>
+                        <button class="hover:text-slate-500" id="play">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-9">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M21 7.5V18M15 7.5V18M3 16.811V8.69c0-.864.933-1.406 1.683-.977l7.108 4.061a1.125 1.125 0 0 1 0 1.954l-7.108 4.061A1.125 1.125 0 0 1 3 16.811Z" />
+                            </svg>
+                        </button>
+                        <button class="hover:text-slate-500" id="playNext">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-7">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M3 8.689c0-.864.933-1.406 1.683-.977l7.108 4.061a1.125 1.125 0 0 1 0 1.954l-7.108 4.061A1.125 1.125 0 0 1 3 16.811V8.69ZM12.75 8.689c0-.864.933-1.406 1.683-.977l7.108 4.061a1.125 1.125 0 0 1 0 1.954l-7.108 4.061a1.125 1.125 0 0 1-1.683-.977V8.69Z" />
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="w-full flex justify-between">
+                        <div class="mr-6" id="playTime">0:00</div>
+                        <div class="bg-white rounded-md w-full h-6 overflow-hidden mr-6">
+                            <div class="bg-blue-500 w-0 h-full" id="playProgress"></div>
+                        </div>
+                        <button class="hover:text-slate-500" id="repeat">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-7">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 12c0-1.232-.046-2.453-.138-3.662a4.006 4.006 0 0 0-3.7-3.7 48.678 48.678 0 0 0-7.324 0 4.006 4.006 0 0 0-3.7 3.7c-.017.22-.032.441-.046.662M19.5 12l3-3m-3 3-3-3m-12 3c0 1.232.046 2.453.138 3.662a4.006 4.006 0 0 0 3.7 3.7 48.656 48.656 0 0 0 7.324 0 4.006 4.006 0 0 0 3.7-3.7c.017-.22.032-.441.046-.662M4.5 12l3 3m-3-3-3 3" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
             </div>
         </section>
     </main>
