@@ -81,10 +81,7 @@ if (isset($_GET['playSong'])&& isset($_GET['songID'])){
                 foreach($songSearchResults as $index => $song) {
                     $firstSong = $index == 0;
                     $artistName = $song->getArtistName();
-                    if ($firstSong) {
-                        $output .= "<div class='rounded p-3 bg-cyan-950'>
-                        <h4 class='mb-3 text-2xl font-bold'>{$artistName}</h4>";
-                    } elseif ($artistName != $songSearchResults[$index - 1]->getArtistName()) {
+                    if ($firstSong || $artistName != $songSearchResults[$index - 1]->getArtistName()) {
                         $output .= "<div class='rounded p-3 bg-cyan-950'>
                         <h4 class='mb-3 text-2xl font-bold'>{$artistName}</h4>";
                     }
@@ -119,9 +116,7 @@ if (isset($_GET['playSong'])&& isset($_GET['songID'])){
                         </div>
                     </div>";
                     $lastSong = $index == count($songSearchResults) - 1;
-                    if ($lastSong) {
-                        $output .= "</div>";
-                    } elseif ($artistName != $songSearchResults[$index + 1]->getArtistName()) {
+                    if ($lastSong || $artistName != $songSearchResults[$index + 1]->getArtistName()) {
                         $output .= "</div>";
                     }
                 }
