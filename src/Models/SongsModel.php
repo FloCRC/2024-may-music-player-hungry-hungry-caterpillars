@@ -45,7 +45,7 @@ class SongsModel
      */
     public function getFavoritedSongsByArtistId(int $artistID): array
     {
-        $query = $this->db->prepare("SELECT `artists`.`id` AS 'artistID', `songs`.`id`, `songs`.`song_name`, `songs`.`play_count`, `songs`.`length`, `songs`.`favourite`
+        $query = $this->db->prepare("SELECT `artists`.`id` AS 'artist_id', `songs`.`id`, `songs`.`song_name`, `songs`.`play_count`, `songs`.`length`, `songs`.`favourite`
                                                 FROM `songs`
                                                     INNER JOIN `albums`
                                                         ON `albums`.`id` = `songs`.`album_id`
@@ -62,7 +62,7 @@ class SongsModel
      */
     public function getRecentSong(): array
     {
-        $query=$this->db->prepare("SELECT `songs`.`id` AS id, `song_name`, `artist_name`, `length`, `album_id`, `play_count`, `time_played`,`favourite`,`artists`.`id` AS `artistID`
+        $query=$this->db->prepare("SELECT `songs`.`id` AS 'id', `song_name`, `artist_name`, `length`, `album_id`, `play_count`, `time_played`,`favourite`,`artists`.`id` AS 'artist_id'
             FROM `albums`
             INNER JOIN `artists`
             ON `artist_id` = `artists`.`id`
@@ -87,14 +87,14 @@ class SongsModel
      * @return Song[]
      */
     public function searchBySongName(string $search): array {
-        $query=$this->db->prepare("SELECT `song_name`,`artist_name`, `artist_id` AS 'artistID', `songs`.`id` AS 'id', `favourite`, `length`, `play_count`
+        $query=$this->db->prepare("SELECT `song_name`,`artist_name`, `artist_id` AS 'artist_id', `songs`.`id` AS 'id', `favourite`, `length`, `play_count`
                                             FROM `albums`
                                             INNER JOIN `artists`
                                             ON `albums`.`artist_id` = `artists`.`id`
                                             INNER JOIN `songs`
                                             ON `songs`.`album_id`= `albums`.`id`
                                             WHERE `song_name` LIKE :search
-                                            ORDER BY `artist_name`;");
+                                            ORDER BY `artist_name`, `id`;");
         $query->setFetchMode(PDO::FETCH_CLASS, Song::class);
         $query->execute(['search'=>"%$search%"]);
         return $query->fetchAll();

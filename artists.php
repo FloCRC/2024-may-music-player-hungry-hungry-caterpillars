@@ -62,7 +62,7 @@ $albumsModel = new AlbumsModel($db);
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5 items-start">
                 <?php foreach ($artists as $artist){
                     $artistId = $artist->getId();
-                    $albums = $albumsModel->getArtistsAlbums($artist->getId());
+                    $albums = $albumsModel->getArtistAlbums($artist->getId());
                     ?>
                 <div class="rounded p-3 bg-cyan-950">
                     <h4 class="mb-3 text-2xl font-bold"><?php echo $artist->getArtistName() ?></h4>

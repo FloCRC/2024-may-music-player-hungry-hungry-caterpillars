@@ -1,20 +1,22 @@
 <?php
 
+declare(strict_types=1);
+
 class Song
 {
     private int $id;
     private string $song_name;
-    private float $length;
+    private string $length;
     private int $album_id;
     private int $play_count;
     private int $favourite;
     private string $time_played;
-    private int $artistID;
+    private int $artist_id;
     private string  $artist_name;
 
-    public function getArtistID(): int
+    public function getArtistId(): int
     {
-        return $this->artistID;
+        return $this->artist_id;
     }
 
     public function getTimePlayed(): string
@@ -42,7 +44,7 @@ class Song
         return $this->song_name;
     }
 
-    public function getLength(): float
+    public function getLength(): string
     {
         return $this->length;
     }

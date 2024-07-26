@@ -67,45 +67,45 @@ class ArtistsModel
     /**
      * @return Artist[]
      */
-    public function getArtistSongsAlbumByID(int $artistID, int $artistAlbum): Array
+    public function getArtistSongsAlbumById(int $artistId, int $albumId): Array
     {
-        $query = $this->db->prepare("SELECT `artist_name`, `album_name`, `artwork_url`, `song_name`, `length` , `songs`.`id` AS 'songID' , `play_count`
+        $query = $this->db->prepare("SELECT `artist_name`, `album_name`, `artwork_url`, `song_name`, `length` , `songs`.`id` AS 'song_id' , `play_count`
             FROM `albums`
                 INNER JOIN `artists`
                     ON `artists`.`id` = `albums`.`artist_id`
                 INNER JOIN `songs`
                     ON `songs`.`album_id` = `albums`.`id`
-                    WHERE `artists`.`id` = :artistID AND `album_id` = :artistAlbum
+                    WHERE `artists`.`id` = :artistId AND `album_id` = :albumId
                     ORDER BY `artist_name`,`album_name`;");
         $query->setFetchMode(PDO::FETCH_CLASS,Artist::class);
-        $query->execute(['artistID'=> $artistID, 'artistAlbum'=> $artistAlbum]);
+        $query->execute(['artistId'=> $artistId, 'albumId'=> $albumId]);
         return $query->fetchAll();
     }
 
     /**
      * @return Artist[]
      */
-    public function getArtistAlbumList(int $artistID): Array
+    public function getArtistAlbumList(int $artistId): Array
     {
-        $query = $this->db->prepare("SELECT `album_name`, `albums`.`id` AS 'albumID'
+        $query = $this->db->prepare("SELECT `album_name`, `albums`.`id` AS 'album_id'
             FROM `albums`
                 INNER JOIN `artists`
                     ON `artists`.`id` = `albums`.`artist_id`
                 INNER JOIN `songs`
                     ON `songs`.`album_id` = `albums`.`id`
-                    WHERE `artists`.`id` = :artistID
+                    WHERE `artists`.`id` = :artistId
                     GROUP BY `album_name`
-                    ORDER BY `artist_name`,`albumID`;");
+                    ORDER BY `artist_name`,`album_id`;");
         $query->setFetchMode(PDO::FETCH_CLASS,Artist::class);
-        $query->execute(['artistID'=> $artistID]);
+        $query->execute(['artistId'=> $artistId]);
         return $query->fetchAll();
     }
 
-    public function getArtistById(int $artistID): Artist
+    public function getArtistById(int $artistId): Artist
     {
-        $query = $this->db->prepare("SELECT `artist_name` FROM `artists` WHERE `id` = :artistID;");
+        $query = $this->db->prepare("SELECT `artist_name` FROM `artists` WHERE `id` = :artistId;");
         $query->setFetchMode(PDO::FETCH_CLASS,Artist::class);
-        $query->execute(['artistID'=> $artistID]);
+        $query->execute(['artistId'=> $artistId]);
         return $query->fetch();
     }
 }

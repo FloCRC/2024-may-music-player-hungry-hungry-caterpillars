@@ -3,23 +3,23 @@ declare(strict_types=1);
 if (!isset($_GET['artist'])){
     header('Location:index.php');
 }
-$artistID = (int)$_GET['artist'];
+$artistId = (int)$_GET['artist'];
 
 require_once ('src/DatabaseConnector.php');
 require_once ('src/Models/ArtistsModel.php');
 require_once ('src/Models/SongsModel.php');
 $db = DatabaseConnector::connect();
-$Artists = new ArtistsModel($db);
-$Albums = $Artists->getArtistAlbumList($artistID);
-$artistName = $Artists->getArtistById($artistID);
+$artistsModel = new ArtistsModel($db);
+$albums = $artistsModel->getArtistAlbumList($artistId);
+$artistName = $artistsModel->getArtistById($artistId);
 
-$SongsModel = new SongsModel($db);
+$songsModel = new SongsModel($db);
 if (isset($_GET['songId'])){
-    $songsId = $SongsModel->updatePlayCount((int)$_GET['songId']);
-    $SongsModel->updateTimePlayed((int)$_GET['songId']);
+    $songsModel->updatePlayCount((int)$_GET['songId']);
+    $songsModel->updateTimePlayed((int)$_GET['songId']);
 }
 if (isset($_GET['favouriteId'])){
-   $songsId = $SongsModel->updateFavourite((int)$_GET['favouriteId']);
+   $songsModel->updateFavourite((int)$_GET['favouriteId']);
 }
 ?>
 <!DOCTYPE html>
@@ -70,34 +70,31 @@ if (isset($_GET['favouriteId'])){
                     </a>
                 </div>
                 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5 items-start">
-
                     <?php
-                        foreach ($Albums as $album) {
-                        $albumId = $album->getAlbumID();
-                        $ArtistSongs = $Artists->getArtistSongsAlbumByID($artistID,$albumId);
+                        foreach ($albums as $album) {
+                        $albumId = $album->getAlbumId();
+                        $albumSongs = $artistsModel->getArtistSongsAlbumById($artistId, $albumId);
                         ?>
-
                         <div class="rounded p-3 bg-cyan-950">
-                        <h4 class="mb-3 text-2xl font-bold"><?php echo $album->getAlbumName() ?> </h4>
-                            <?php foreach ($ArtistSongs as $song) { ?>
+                            <h4 class="mb-3 text-2xl font-bold"><?php echo $album->getAlbumName() ?> </h4>
+                            <?php foreach ($albumSongs as $albumSong) { ?>
 
                             <div class="mx-3 mb-3 flex justify-between items-center">
                                 <div class="w-3/4 pe-3">
-
-                                        <h4 class="font-bold text-lg"> <?php echo $song->getSongName() ?></h4>
-                                    <p class="text-sm">Played <?php echo $song->getPlayCount() ?> times</p>
+                                    <h4 class="font-bold text-lg"> <?php echo $albumSong->getSongName() ?></h4>
+                                    <p class="text-sm">Played <?php echo $albumSong->getPlayCount() ?> times</p>
                                 </div>
                                 <div class="flex items-center justify-between w-24">
-                                    <span class="text-slate-500"><?php echo number_format((float)$song->getLength(),2,':')  ?></span>
-                                    <a href="?playSong=1&songId=<?php echo $song->getSongID() ?>&artist=<?php echo $artistID ?>" class="hover:text-slate-500 hover:cursor-pointer">
+                                    <span class="text-slate-500"><?php echo number_format((float)$albumSong->getLength(),2,':')  ?></span>
+                                    <a href="?playSong=1&songId=<?php echo $albumSong->getSongId() ?>&artist=<?php echo $artistId ?>" class="hover:text-slate-500 hover:cursor-pointer">
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 inline">
                                             <path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"></path>
                                             <path stroke-linecap="round" stroke-linejoin="round" d="M15.91 11.672a.375.375 0 0 1 0 .656l-5.603 3.113a.375.375 0 0 1-.557-.328V8.887c0-.286.307-.466.557-.327l5.603 3.112Z"></path>
                                         </svg>
                                     </a>
-                                    <a href="?favouriteId=<?php echo $song->getSongID() ?>&artist=<?php echo $artistID ?>" class="hover:text-slate-500 hover:cursor-pointer <?php
-                                    $currentSongId = $song->getSongID();
-                                    $currentSong = $SongsModel->getSongById((int)$currentSongId);
+                                    <a href="?favouriteId=<?php echo $albumSong->getSongId() ?>&artist=<?php echo $artistId ?>" class="hover:text-slate-500 hover:cursor-pointer <?php
+                                    $currentSongId = $albumSong->getSongId();
+                                    $currentSong = $songsModel->getSongById((int)$currentSongId);
                                     $isFavourite = $currentSong->getFavourite();
                                     if ($isFavourite == 1){echo 'text-orange-500';}
                                     ?>">
