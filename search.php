@@ -69,7 +69,7 @@ if (isset($_GET['search'])){
             </div>
 
             <form class="flex rounded p-3 bg-cyan-950 mb-5">
-                <input type="search" name="search" class="rounded p-2 w-full text-black" />
+                <input type="search" name="search" placeholder="Type here" value='<?php if (isset($_GET['search'])){echo $_GET['search'];} ?>' class="rounded p-2 w-full text-black" />
                 <input type="submit" value="Search" class="ml-3 border border-white rounded p-3 px-5 hover:border-slate-500 hover:text-slate-500 hover:cursor-pointer">
             </form>
 
