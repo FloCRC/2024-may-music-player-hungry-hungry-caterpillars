@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 class Artist
 {
     private int $id;
@@ -7,9 +10,9 @@ class Artist
     private string $artwork_url;
     private string $album_name;
     private string $song_name;
-    private float $length;
-    private int $songID;
-    private int $albumID;
+    private string $length;
+    private int $song_id;
+    private int $album_id;
     private int $play_count;
     private int $favourite;
 
@@ -17,6 +20,7 @@ class Artist
     {
         return $this->favourite;
     }
+
     public function getArtworkUrl(): string
     {
         return $this->artwork_url;
@@ -52,9 +56,9 @@ class Artist
         return $this->length;
     }
 
-    public function getSongID(): string
+    public function getSongId(): int
     {
-        return $this->songID;
+        return $this->song_id;
     }
 
     public function getPlayCount(): int
@@ -62,8 +66,8 @@ class Artist
         return $this->play_count;
     }
 
-    public function getAlbumID(): int
+    public function getAlbumId(): int
     {
-        return $this->albumID;
+        return $this->album_id;
     }
 }

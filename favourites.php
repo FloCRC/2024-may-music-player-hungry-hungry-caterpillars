@@ -9,12 +9,12 @@ $artistsModel = new ArtistsModel($db);
 $songsModel = new SongsModel($db);
 $artists = $artistsModel->getAllArtists();
 
-$SongsModel = new SongsModel($db);
 if (isset($_GET['songId'])){
-    $songsId = $SongsModel->updatePlayCount((int)$_GET['songId']);
+    $songsModel->updatePlayCount((int)$_GET['songId']);
+    $songsModel->updateTimePlayed((int)$_GET['songId']);
 }
 if (isset($_GET['favouriteId'])){
-    $songsId = $SongsModel->updateFavourite((int)$_GET['favouriteId']);
+    $songsModel->updateFavourite((int)$_GET['favouriteId']);
 }
 ?>
 <!DOCTYPE html>
@@ -83,7 +83,7 @@ if (isset($_GET['favouriteId'])){
                                 </a>
                                 <a href="?favouriteId=<?php echo $favouritedSong->getID() ?>&artist=<?php echo $artistID ?>" class="hover:text-slate-500 hover:cursor-pointer <?php
                                 $currentSongId = $favouritedSong->getID();
-                                $currentSong = $SongsModel->getSongById((int)$currentSongId);
+                                $currentSong = $songsModel->getSongById((int)$currentSongId);
                                 $isFavourite = $currentSong->getFavourite();
                                 if ($isFavourite == 1){echo 'text-orange-500';}
                                 ?>">

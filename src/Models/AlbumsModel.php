@@ -17,7 +17,7 @@ class AlbumsModel
     /**
      * @return Album[] array
      */
-    public function getArtistsAlbums(int $artistId): array
+    public function getArtistAlbums(int $artistId): array
     {
         $query = $this->db->prepare("SELECT `albums`.`id`, `albums`.`album_name`, `albums`.`artwork_url`
                                                 FROM `albums`
@@ -31,7 +31,7 @@ class AlbumsModel
 
     public function getAlbumSongCount(int $albumId): Album
     {
-        $query = $this->db->prepare("SELECT `albums`.`id` AS 'album_id', `albums`.`album_name`, `albums`.`artwork_url`, `songs`.`id` AS 'song_id', COUNT(`songs`.`album_id`) as 'song_count'
+        $query = $this->db->prepare("SELECT `albums`.`id` AS 'id', `albums`.`album_name`, `albums`.`artwork_url`, `songs`.`id` AS 'song_id', COUNT(`songs`.`album_id`) as 'song_count'
                                                 FROM `albums`
                                                     INNER JOIN `songs`
                                                     ON `albums`.`id` = `songs`.`album_id`

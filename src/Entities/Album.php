@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Example\Entities;
 class Album
 {
@@ -7,7 +9,6 @@ class Album
     private string $album_name;
     private string $artwork_url;
     private int $artist_id;
-    private int $album_id;
     private int $song_id;
     private int $song_count;
     private string $artist_name;
@@ -16,11 +17,6 @@ class Album
     public function getSongCount(): int
     {
         return $this->song_count;
-    }
-
-    public function getAlbumId(): int
-    {
-        return $this->album_id;
     }
 
     public function getSongId(): int

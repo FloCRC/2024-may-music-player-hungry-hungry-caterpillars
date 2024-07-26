@@ -11,19 +11,19 @@ $db = DatabaseConnector::connect();
 $artistsModel = new ArtistsModel($db);
 $artists = $artistsModel->getArtistsSummary();
 
-$songModel = new SongsModel($db);
+$songsModel = new SongsModel($db);
 if (isset($_GET['favouriteId'])){
-    $songsId = $songModel->updateFavourite((int)$_GET['favouriteId']);
+    $songsModel->updateFavourite((int)$_GET['favouriteId']);
 }
-$recentSongs = $songModel->getRecentSong();
+$recentSongs = $songsModel->getRecentSong();
 
 $albumModel = new AlbumsModel($db);
 $popularAlbums = $albumModel->getPopularAlbums();
 
-if (isset($_GET['playSong'])&& isset($_GET['songID'])){
-    $songID = (int)$_GET['songID'];
-    $songModel->updateTimePlayed($songID);
-    $songModel->updatePlayCount($songID);
+if (isset($_GET['playSong'])&& isset($_GET['songId'])){
+    $songId = (int)$_GET['songId'];
+    $songsModel->updateTimePlayed($songId);
+    $songsModel->updatePlayCount($songId);
 }
 
 ?>
@@ -88,14 +88,14 @@ if (isset($_GET['playSong'])&& isset($_GET['songID'])){
                     <h3 class="text-xl font-bold mb-3">Recently Played Songs</h3>
                         <?php
                             foreach ($recentSongs as $recentSong) {
-                                $songID = $recentSong->getId();
+                                $songId = $recentSong->getId();
                                 $songTitle = $recentSong->getSongName();
                                 $songArtist = $recentSong->getArtistName();
-                                $songArtistId  = $recentSong->getArtistID();
+                                $songArtistId  = $recentSong->getArtistId();
                                 $songLength = $recentSong->getLength();
                                 $songFavourite = $recentSong->getFavourite();
 
-                                echo SongDisplayService::displayRecentSong($songID,$songArtistId,$songTitle,$songArtist,$songLength, $songFavourite);
+                                echo SongDisplayService::displayRecentSong($songId,$songArtistId,$songTitle,$songArtist,$songLength, $songFavourite);
                             }
 
                         ?>
@@ -104,12 +104,12 @@ if (isset($_GET['playSong'])&& isset($_GET['songID'])){
                     <h3 class="text-xl font-bold mb-3">Most Popular Albums</h3>
                     <?php
                     foreach ($popularAlbums as $popularAlbum) {
-                        $artWork = $popularAlbum->getArtworkUrl();
+                        $albumArtwork = $popularAlbum->getArtworkUrl();
                         $albumTitle = $popularAlbum->getAlbumName();
                         $albumArtist = $popularAlbum->getArtistName();
-                        $albumArtistID  = $popularAlbum->getArtistID();
+                        $albumArtistId  = $popularAlbum->getArtistId();
 
-                        echo AlbumDisplayService::displayPopularAlbums($artWork, $albumTitle, $albumArtist, $albumArtistID);
+                        echo AlbumDisplayService::displayPopularAlbum($albumArtwork, $albumTitle, $albumArtist, $albumArtistId);
                     }
 
                     ?>

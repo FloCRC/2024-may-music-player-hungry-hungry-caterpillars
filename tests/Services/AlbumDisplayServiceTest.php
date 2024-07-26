@@ -10,7 +10,7 @@ class AlbumDisplayServiceTest extends TestCase
         $albumTitle = 'test';
         $albumArtist = 'test';
         $albumArtistID = 1;
-        $result = AlbumDisplayService::displayPopularAlbums($artWork, $albumTitle, $albumArtist, $albumArtistID);
+        $result = AlbumDisplayService::displayPopularAlbum($artWork, $albumTitle, $albumArtist, $albumArtistID);
         $expected = "<div class='border-b border-slate-500 pb-5 mb-3 flex justify-between items-center'>
                             <img class='w-[50px]' src=test />
                             <div class='w-3/4 px-3'>
@@ -34,6 +34,6 @@ class AlbumDisplayServiceTest extends TestCase
         $albumArtistID = 'test';
 
         $this->expectException(\TypeError::class);
-        AlbumDisplayService::displayPopularAlbums($artWork, $albumTitle, $albumArtist, $albumArtistID);
+        AlbumDisplayService::displayPopularAlbum($artWork, $albumTitle, $albumArtist, $albumArtistID);
     }
 }
