@@ -76,7 +76,7 @@ class ArtistsModel
                 INNER JOIN `songs`
                     ON `songs`.`album_id` = `albums`.`id`
                     WHERE `artists`.`id` = :artistId AND `album_id` = :albumId
-                    ORDER BY `artist_name`,`album_name`;");
+                    ORDER BY `album_name`,`song_id`;");
         $query->setFetchMode(PDO::FETCH_CLASS,Artist::class);
         $query->execute(['artistId'=> $artistId, 'albumId'=> $albumId]);
         return $query->fetchAll();

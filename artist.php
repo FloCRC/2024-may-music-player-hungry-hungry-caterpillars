@@ -15,11 +15,14 @@ $artistName = $artistsModel->getArtistById($artistId);
 
 $songsModel = new SongsModel($db);
 if (isset($_GET['songId'])){
-    $songsModel->updatePlayCount((int)$_GET['songId']);
-    $songsModel->updateTimePlayed((int)$_GET['songId']);
+    $songId = (int)$_GET['songId'];
+    $songsModel->updatePlayCount($songId);
+    $songsModel->updateTimePlayed($songId);
 }
+
 if (isset($_GET['favouriteId'])){
-   $songsModel->updateFavourite((int)$_GET['favouriteId']);
+    $favouriteId = (int)$_GET['favouriteId'];
+    $songsModel->updateFavourite($favouriteId);
 }
 ?>
 <!DOCTYPE html>

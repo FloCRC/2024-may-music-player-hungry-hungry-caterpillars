@@ -13,7 +13,8 @@ $artists = $artistsModel->getArtistsSummary();
 
 $songsModel = new SongsModel($db);
 if (isset($_GET['favouriteId'])){
-    $songsModel->updateFavourite((int)$_GET['favouriteId']);
+    $favouriteId = (int)$_GET['favouriteId'];
+    $songsModel->updateFavourite($favouriteId);
 }
 $recentSongs = $songsModel->getRecentSong();
 
